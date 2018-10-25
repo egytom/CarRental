@@ -1,0 +1,26 @@
+Ezeket a függvényeket nagyjából el is kell készíteni!!
+
+-BookingService	(Szabó T.)
+	Foglalás metódusai - egy adott autóval már:
+		* adatok begyûjtése
+		* új kliens létrehozása
+		* payment létrehozása
+
+-PaymentService (Soós S.)
+		* kifizetés
+
+-FeedbackService (Kurdi B.)	
+		* feedback létrehozása - admin tudja
+		* feedback küldése - elfogadja az admin a foglalást
+
+-SearchService	(Egyed T.)
+		* autó keresése - típus, kategória, név alapján
+
+-NewsService (Somogyi B.)
+		* hír megjelenítése a kezdõlapon
+		* hír létrehozása
+
+-DiscountService (valaki bemásolja a példából kb.)
+		* mint a példában
+
+
