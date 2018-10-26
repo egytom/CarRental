@@ -3,3 +3,5 @@ carrental_web/.classpath
 carrental_web/.project
 *.class
 .idea/
+carrental_web/bin/.settings/
+carrental_web/bin/
