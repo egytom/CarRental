@@ -1,5 +1,11 @@
 package model;
 
-public class Payment {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class Payment {
+    private int id;
+    private int amount;
 }
