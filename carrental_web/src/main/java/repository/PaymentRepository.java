@@ -14,5 +14,5 @@ public interface PaymentRepository {
 
     void save(Payment payment);
 
-    List<Payment> findById(int id);
+    Payment findById(int id);
 }

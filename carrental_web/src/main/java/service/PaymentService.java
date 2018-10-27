@@ -1,10 +1,29 @@
 package service;
 
 import model.Payment;
+import model.Client;
 import model.Booking;
 
+import repository.BookingRepository;
+import repository.PaymentRepository;
+
+
 public class PaymentService {
-    // kliens elküldi a pénzt - nála a payment 0 lesz
-    // admin befogadja a pénzt - nála a payment az adott összeg lesz
-    // booking végleges lesz - elmentésre kerül
+    PaymentRepository paymentRepository;
+    BookingRepository bookingRepository;
+    boolean paymentDeleted = false;
+    boolean bookingSaved = false;
+
+    public void pay(Client client) {
+        Payment payment = paymentRepository.findById(client.getPayment().getId());  // klienshez tartozó fizetési kötelezettség
+
+        if(client.getBooked().getPrice().getAmount() == payment.getAmount())    // ha a foglalás ára megegyezik a fizetési kötelezettség összegével
+            client.getPayment().setAmount(0);  // kliens elküldi a pénzt
+
+        if (!paymentDeleted)
+            paymentDeleted = paymentRepository.delete(payment);  // fizetési kötelezettség törlődik
+
+        if (!bookingSaved)
+            bookingRepository.save(client.getBooked());     // booking végleges lesz - elmentésre kerül
+    }
 }
