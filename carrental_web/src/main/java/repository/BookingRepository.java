@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface BookingRepository {
-    Booking create(int id, Date fromDate, Date toDate);
+    Booking create(Date fromDate, Date toDate);
 
     Booking update(Booking booking);
 

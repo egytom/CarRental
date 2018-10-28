@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PaymentRepository {
 
-    Payment create(int id, int amount);
+    Payment create(int amount);
 
     Payment update(Payment payment);
 
