@@ -7,19 +7,27 @@ import model.Booking;
 import repository.BookingRepository;
 import repository.PaymentRepository;
 
+import java.util.List;
+
 
 public class PaymentService {
     PaymentRepository paymentRepository;
     BookingRepository bookingRepository;
 
-    public void pay(Client client) {
-        Payment payment = paymentRepository.findById(client.getPayment().getId());  // klienshez tartozó fizetési kötelezettség
+    public void pay(Client client, int id) {
+        List<Booking> bookings = bookingRepository.findByClient(client);    // kliens osszes foglalasa
+        Booking booking; // a foglalas, amit most kifizet
 
-        if(client.getBooked().getPrice().getAmount() == payment.getAmount())    // ha a foglalás ára megegyezik a fizetési kötelezettség összegével
-            client.getPayment().setAmount(0);  // kliens elküldi a pénzt
+        for (Booking b : bookings) {
+            if (b.getId() == id)
+                booking = b;
+        }
 
-        paymentRepository.delete(payment);  // fizetési kötelezettség törlődik
+        int paid = booking.getPrice().getAmount();  // foglalasert fizetendo ar
+        client.getPayment().setAmount((client.getPayment().getAmount()) - paid);  // kliens elkuldi a megfelelo osszeget
 
-        bookingRepository.save(client.getBooked());     // booking végleges lesz - elmentésre kerül
+        paymentRepository.delete(booking.getPrice());  // adott fizetesi kotelezettseg torlodik
+
+        bookingRepository.save(booking);     // booking ezzel vegleges lesz - elmentesre kerul
     }
 }
