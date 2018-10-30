@@ -11,6 +11,8 @@ import repository.PaymentRepository;
 public class PaymentService {
     PaymentRepository paymentRepository;
     BookingRepository bookingRepository;
+    
+    //FIXME: a service osztályok állapotmentesek legyenek
     boolean paymentDeleted = false;
     boolean bookingSaved = false;
 

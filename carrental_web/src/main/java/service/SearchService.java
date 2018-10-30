@@ -24,6 +24,9 @@ public class SearchService {
 	}
 	
 	public List<Car> searchCarByPrice(int maxPrice){
+		
+		//FIXME: nem hatékony az összeset beolvasni memóriába, és ott szûrni
+		//ugyanúgy a repositoryba kell egy finder, mint a többi keresésnél
 		List<Car> allCars = carRepository.getAll();
 		List<Car> cars = new ArrayList<Car>();
 		
