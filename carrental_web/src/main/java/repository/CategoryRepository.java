@@ -2,9 +2,12 @@ package repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import model.Category;
 
-public interface CategoryRepository {
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+	
     List<Category> findByBrand(String brand);
 
     List<Category> findByName(String name);
@@ -13,7 +16,4 @@ public interface CategoryRepository {
 
     Category update(Category category);
 
-    boolean delete(Category category);
-
-    void save(Category category);
 }

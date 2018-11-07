@@ -1,27 +1,28 @@
 package service;
 
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import model.Car;
-import model.Category;
 import repository.CarRepository;
 import repository.CategoryRepository;
 
-import java.util.List;
-
+@Service
 public class DiscountService {
+	
+	@Autowired
     CarRepository carRepository;
-    CategoryRepository categoryRepository;
-
+    
+	@Autowired
+	CategoryRepository categoryRepository;
+	
+	@Transactional
     public void discountCarsInCategory(String categoryName, int percent) {
 
-        List<Category> categories = categoryRepository.findByName(categoryName);
-
-        //FIXME: a külsõ ciklus a kategóriákon iterál, de nem is használja a category változót
-        for (Category category : categories) {
-            for (Car car : carRepository.getAll()) {
-                car.setRentalPrice((int) (car.getRentalPrice() * (1 - percent / 100.0)));
-                carRepository.save(car);
-            }
-        }
+        for (Car car : carRepository.findAll()) 
+           car.setRentalPrice((int) (car.getRentalPrice() * (1 - percent / 100.0)));
+              
     }
 
 }

@@ -1,33 +1,30 @@
 package service;
 
-import model.Payment;
-import model.Client;
-import model.Booking;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import model.Booking;
+import model.Client;
 import repository.BookingRepository;
 import repository.PaymentRepository;
 
-import java.util.List;
-
-
+@Service
 public class PaymentService {
+	
+	@Autowired
     PaymentRepository paymentRepository;
+	
+	@Autowired
     BookingRepository bookingRepository;
-
-    public void pay(Client client, int id) {
-        List<Booking> bookings = bookingRepository.findByClient(client);    // kliens osszes foglalasa
-        Booking booking; // a foglalas, amit most kifizet
-
-        for (Booking b : bookings) {
-            if (b.getId() == id)
-                booking = b;
-        }
-
-        int paid = booking.getPrice().getAmount();  // foglalasert fizetendo ar
-        client.getPayment().setAmount((client.getPayment().getAmount()) - paid);  // kliens elkuldi a megfelelo osszeget
+	
+	@Transactional
+    public void pay(Client client, int bookingId) {
+    	
+        Booking booking = bookingRepository.findById(bookingId).get(0); // a foglalas, amit most kifizet
 
         paymentRepository.delete(booking.getPrice());  // adott fizetesi kotelezettseg torlodik
+        client.getBooking().remove(booking);		// adott foglalás törlése, teljesítettük a fizetést
 
-        bookingRepository.save(booking);     // booking ezzel vegleges lesz - elmentesre kerul
     }
 }

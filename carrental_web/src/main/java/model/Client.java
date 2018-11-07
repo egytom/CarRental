@@ -1,19 +1,28 @@
 package model;
 
-import java.awt.List;
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@Entity
 public class Client {
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String name;
 	private String emailAddress;
 	private String phoneNumber;
 	
-	private ArrayList<Booking> booked;
+	@OneToMany(mappedBy="client")
+	private ArrayList<Booking> booking;
 	
 }

@@ -1,8 +1,5 @@
 package service;
 
-import model.Client;
-import model.Feedback;
-
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -13,15 +10,26 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import model.Client;
+import repository.FeedbackRepository;
+
+@Service
 public class FeedbackService {
-	Feedback feedback;
 	
+	@Autowired
+    FeedbackRepository feedbackRepository;
+	
+	@Transactional
 	void send(Client client) {
 		
 	      String to = client.getEmailAddress();
 
 	      String from = "temalabor2018@gmail.com";
-	      final String username = "Téma Labor";
+	      final String username = "Tema Labor";
 	      final String password = "20Temalabor18";
 
 	      String host = "relay.jangosmtp.net";
@@ -45,7 +53,7 @@ public class FeedbackService {
 		   message.setRecipients(Message.RecipientType.TO,
 	               InternetAddress.parse(to));
 		   message.setSubject("Car Rental");
-		   message.setText(feedback.getText());
+		   message.setText(feedbackRepository.findByClient(client).get(0).getText());
 
 		   Transport.send(message);
 	      } catch (MessagingException e) {

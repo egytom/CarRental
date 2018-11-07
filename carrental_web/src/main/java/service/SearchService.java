@@ -3,40 +3,42 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import model.Car;
 import model.Category;
 import model.Type;
 import repository.CarRepository;
 
+@Service
 public class SearchService {
+	
+	@Autowired
 	CarRepository carRepository;
 	
+	@Transactional
 	public List<Car> searchCarByName(String name){
 		return carRepository.findByName(name);
 	}
 	
+	@Transactional
 	public List<Car> searchCarByType(Type type){
 		return carRepository.findByType(type);
 	}
 	
+	@Transactional
 	public List<Car> searchCarByCategory(Category category){
 		return carRepository.findByCategory(category);
 	}
 	
+	@Transactional
 	public List<Car> searchCarByPrice(int maxPrice){
-		
-		//FIXME: nem hatékony az összeset beolvasni memóriába, és ott szûrni
-		//ugyanúgy a repositoryba kell egy finder, mint a többi keresésnél
-		List<Car> allCars = carRepository.getAll();
-		List<Car> cars = new ArrayList<Car>();
-		
-		for (Car car : allCars)
-			if (car.getRentalPrice() <= maxPrice)
-				cars.add(car);
-		
-		return cars;
+		return carRepository.findByPrice(maxPrice);
 	}
 	
+	@Transactional
 	public List<Car> searchCarByNameAndType(String name, Type type){
 		List<Car> carsByName = carRepository.findByName(name);
 		List<Car> carsByType = carRepository.findByType(type);
@@ -44,13 +46,15 @@ public class SearchService {
 		return containsBothCarList(carsByName, carsByType);
 	}
 	
+	@Transactional
 	public List<Car> searchCarByNameAndCategory(String name, Category category){
 		List<Car> carsByName = carRepository.findByName(name);
 		List<Car> carsByCategory = carRepository.findByCategory(category);
 					
 		return containsBothCarList(carsByName, carsByCategory);
 	}
-
+	
+	@Transactional
 	public List<Car> searchCarByCategoryAndType(Category category, Type type){
 		List<Car> carsByCategory = carRepository.findByCategory(category);
 		List<Car> carsByType = carRepository.findByType(type);
@@ -58,6 +62,7 @@ public class SearchService {
 		return containsBothCarList(carsByCategory, carsByType);
 	}
 	
+	@Transactional
 	public List<Car> searchCarByNameAndCategoryAndType(String name, Category category, Type type){
 		List<Car> carsByName = carRepository.findByName(name);
 		List<Car> carsByCategory = carRepository.findByCategory(category);

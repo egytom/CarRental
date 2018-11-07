@@ -1,21 +1,20 @@
 package repository;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import model.Booking;
 import model.Car;
 import model.Client;
 
-import java.util.Date;
-import java.util.List;
 
-
-public interface BookingRepository {
+public interface BookingRepository extends JpaRepository<Booking, Integer> {
+	
     Booking create(Date fromDate, Date toDate);
 
     Booking update(Booking booking);
-
-    boolean delete(Booking booking);
-
-    void save(Booking booking);
 
     List<Booking> findById(int id);
 

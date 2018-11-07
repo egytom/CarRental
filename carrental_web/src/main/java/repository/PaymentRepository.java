@@ -1,18 +1,14 @@
 package repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import model.Payment;
 
-import java.util.List;
-
-public interface PaymentRepository {
+public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
     Payment create(int amount);
 
     Payment update(Payment payment);
-
-    boolean delete(Payment payment);
-
-    void save(Payment payment);
 
     Payment findById(int id);
 }
