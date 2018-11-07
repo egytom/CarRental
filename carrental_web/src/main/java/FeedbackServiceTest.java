@@ -20,7 +20,7 @@ import repository.ClientRepository;
 import repository.FeedbackRepository;
 
 @Service
-public class FeedbackService {
+public class FeedbackServiceTest {
 
 	@Autowired
 	FeedbackRepository feedbackRepository;

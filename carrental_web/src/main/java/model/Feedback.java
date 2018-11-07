@@ -16,4 +16,12 @@ public class Feedback {
 	@GeneratedValue
 	private int id;
 	private String text;
+	
+	
+	public Feedback(String text) {
+		super();
+		this.text = text;
+	}
+	
+	
 }

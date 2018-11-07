@@ -24,5 +24,21 @@ public class Client {
 	
 	@OneToMany(mappedBy="client")
 	private ArrayList<Booking> booking;
+
+	public Client() {}
+
+	public Client(int id, String emailAddress) {
+		super();
+		this.id = id;
+		this.emailAddress = emailAddress;
+	}
+
+	public Client(String name, String emailAddress) {
+		super();
+		this.name = name;
+		this.emailAddress = emailAddress;
+	}
+			
+	
 	
 }
