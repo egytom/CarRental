@@ -1,9 +1,6 @@
 package carrental.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,10 +16,10 @@ public class Car {
 	private int rentalPrice;
 	private String name;
 
-	@OneToOne
+	@ManyToOne
 	private Type type;
 
-	@OneToOne
+	@ManyToOne
 	private Category category;
 
 	@OneToOne(mappedBy = "car")

@@ -1,12 +1,11 @@
 package carrental.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,8 +23,8 @@ public class Type {
 	private FuelType fuelType;
 	private int seatNumber;
 
-	@OneToOne(mappedBy = "type")
-	private Car car;
+	@OneToMany(mappedBy = "type")
+	private List<Car> car;
 
 	public Type() {
 	}

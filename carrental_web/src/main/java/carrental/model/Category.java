@@ -1,12 +1,11 @@
 package carrental.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,8 +18,8 @@ public class Category {
     private String name;
     private String brand;
 
-    @OneToOne(mappedBy = "category")
-    private Car car;
+    @OneToMany(mappedBy = "category")
+    private List<Car> car;
 
     public Category() {
     }
