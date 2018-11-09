@@ -1,4 +1,4 @@
-package service;
+package carrental.service;
 
 import java.util.Properties;
 
