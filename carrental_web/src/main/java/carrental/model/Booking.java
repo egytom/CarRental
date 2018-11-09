@@ -2,10 +2,7 @@ package carrental.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,9 +23,17 @@ public class Booking {
     
     @ManyToOne
     private Admin admin;
-    
+
+    @OneToOne
     private Car car;
+
+    @OneToOne
     private Feedback feedback;
+
+    @OneToOne
     private Payment price;
+
+    public Booking() {
+    }
     
 }

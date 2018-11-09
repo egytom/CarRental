@@ -38,7 +38,5 @@ public class Client {
 		this.name = name;
 		this.emailAddress = emailAddress;
 	}
-			
-	
-	
+
 }

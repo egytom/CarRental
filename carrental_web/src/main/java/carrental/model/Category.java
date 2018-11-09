@@ -3,6 +3,7 @@ package carrental.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +18,11 @@ public class Category {
     private int id;
     private String name;
     private String brand;
+
+    @OneToOne(mappedBy = "category")
+    private Car car;
+
+    public Category() {
+    }
     
 }
