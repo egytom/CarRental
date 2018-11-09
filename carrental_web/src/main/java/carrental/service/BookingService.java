@@ -1,16 +1,17 @@
-package service;
+package carrental.service;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import carrental.model.Booking;
+import carrental.model.Car;
+import carrental.model.Client;
+import carrental.model.Payment;
+import carrental.repository.BookingRepository;
+import carrental.repository.ClientRepository;
+import carrental.repository.PaymentRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import model.Booking;
-import model.Car;
-import model.Client;
-import model.Payment;
-import repository.BookingRepository;
-import repository.ClientRepository;
-import repository.PaymentRepository;
 
 @Service
 public class BookingService {

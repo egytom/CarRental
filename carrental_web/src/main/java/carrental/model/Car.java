@@ -1,4 +1,4 @@
-package model;
+package carrental.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,18 +10,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Feedback {
+public class Car {
 	
 	@Id
 	@GeneratedValue
 	private int id;
-	private String text;
+	private int rentalPrice;
+	private String name;
 	
-	
-	public Feedback(String text) {
-		super();
-		this.text = text;
-	}
-	
+	private Type type;
+	private Category category;
 	
 }

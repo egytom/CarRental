@@ -1,11 +1,11 @@
-
+package carrental;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import model.Car;
-import repository.CarRepository;
+import carrental.model.Car;
+import carrental.repository.CarRepository;
 
 @SpringBootApplication
 public class CarrentalApplication  implements CommandLineRunner {

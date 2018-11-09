@@ -1,4 +1,4 @@
-package model;
+package carrental.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,16 +10,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Type {
+public class Feedback {
 	
 	@Id
 	@GeneratedValue
 	private int id;
+	private String text;
 	
-	private enum GearType {manual, auto};
-	private enum FuelType {diesel, gasoline, electric};
 	
-	private GearType gearType;
-	private FuelType fuelType;
-	private int seatNumber;
+	public Feedback(String text) {
+		super();
+		this.text = text;
+	}
+	
+	
 }

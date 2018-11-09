@@ -1,12 +1,12 @@
-package repository;
+package carrental.repository;
 
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Client;
-import model.Feedback;
+import carrental.model.Client;
+import carrental.model.Feedback;
 
 public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
 	

@@ -1,4 +1,4 @@
-package model;
+package carrental.model;
 
 import java.util.Date;
 

@@ -1,16 +1,17 @@
-package service;
+package carrental.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import carrental.model.Car;
+import carrental.model.Category;
+import carrental.model.Type;
+import carrental.repository.CarRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import model.Car;
-import model.Category;
-import model.Type;
-import repository.CarRepository;
 
 @Service
 public class SearchService {

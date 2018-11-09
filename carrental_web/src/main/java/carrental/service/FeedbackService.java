@@ -1,4 +1,4 @@
-package service;
+package carrental.service;
 
 import java.util.Properties;
 
@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.Client;
-import repository.ClientRepository;
-import repository.FeedbackRepository;
+import carrental.model.Client;
+import carrental.repository.ClientRepository;
+import carrental.repository.FeedbackRepository;
 
 @Service
 public class FeedbackService {

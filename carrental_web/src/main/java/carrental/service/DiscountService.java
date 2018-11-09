@@ -1,12 +1,13 @@
-package service;
+package carrental.service;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import carrental.model.Car;
+import carrental.repository.CarRepository;
+import carrental.repository.CategoryRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import model.Car;
-import repository.CarRepository;
-import repository.CategoryRepository;
 
 @Service
 public class DiscountService {

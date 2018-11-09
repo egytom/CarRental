@@ -1,8 +1,8 @@
-package repository;
+package carrental.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Type;
+import carrental.model.Type;
 
 public interface TypeRepository extends JpaRepository<Type, Integer> {	
 	

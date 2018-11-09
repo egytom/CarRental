@@ -1,10 +1,10 @@
-package repository;
+package carrental.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Admin;
+import carrental.model.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
     

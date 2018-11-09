@@ -1,10 +1,10 @@
-package repository;
+package carrental.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Client;
+import carrental.model.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 	

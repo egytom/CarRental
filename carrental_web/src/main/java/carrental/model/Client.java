@@ -1,6 +1,6 @@
-package model;
+package carrental.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,7 @@ public class Client {
 	private String phoneNumber;
 	
 	@OneToMany(mappedBy="client")
-	private ArrayList<Booking> booking;
+	private List<Booking> booking;
 
 	public Client() {}
 

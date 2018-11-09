@@ -1,4 +1,4 @@
-package model;
+package carrental.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Category {
+public class Payment {
 	
 	@Id
 	@GeneratedValue
     private int id;
-    private String name;
-    private String brand;
+    private int amount;
     
 }

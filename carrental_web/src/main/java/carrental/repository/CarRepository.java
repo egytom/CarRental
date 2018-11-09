@@ -1,12 +1,12 @@
-package repository;
+package carrental.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Car;
-import model.Category;
-import model.Type;
+import carrental.model.Car;
+import carrental.model.Category;
+import carrental.model.Type;
 
 public interface CarRepository extends JpaRepository<Car, Integer> {
 	List<Car> findByName(String name);

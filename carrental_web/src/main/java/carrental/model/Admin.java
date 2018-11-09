@@ -1,6 +1,7 @@
-package model;
+package carrental.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,5 +49,5 @@ public class Admin {
     private String password;
     
     @OneToMany(mappedBy = "admin")
-    private ArrayList<Booking> booking;
+    private List<Booking> booking;
 }
