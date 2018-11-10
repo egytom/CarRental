@@ -19,7 +19,7 @@ public class Payment {
 
 	@Id
 	@GeneratedValue
-    private int id;
+    private Integer id;
     private int amount;
 
     @OneToOne(mappedBy = "price")
@@ -27,6 +27,12 @@ public class Payment {
 
 	public Payment(int amount) {
 		super();
+		this.amount = amount;
+	}
+
+	public Payment(int id, int amount) {
+		super();
+		this.id = id;
 		this.amount = amount;
 	}
     

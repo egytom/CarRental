@@ -21,7 +21,7 @@ public class Admin {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String password;
 
 	@OneToMany(mappedBy = "admin")

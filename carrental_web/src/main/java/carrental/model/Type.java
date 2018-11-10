@@ -21,7 +21,7 @@ public class Type {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	
 	public enum GearType {manual, auto};
 	public enum FuelType {diesel, gasoline, electric};

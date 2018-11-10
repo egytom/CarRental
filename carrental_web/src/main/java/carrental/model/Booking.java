@@ -22,7 +22,7 @@ public class Booking {
 	
 	@Id
 	@GeneratedValue
-    private int id;
+    private Integer id;
     private Date fromDate;
     private Date toDate;
     
@@ -32,7 +32,7 @@ public class Booking {
     @ManyToOne
     private Admin admin;
 
-    @OneToOne
+    @ManyToOne
     private Car car;
 
     @OneToOne
@@ -40,5 +40,12 @@ public class Booking {
 
     @OneToOne
     private Payment price;
+
+    public Booking(int id, Car car, Payment price) {
+        super();
+        this.id = id;
+        this.car = car;
+        this.price = price;
+    }
     
 }
