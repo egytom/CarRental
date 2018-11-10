@@ -29,7 +29,7 @@ public class Car {
 	@ManyToOne
 	private Category category;
 
-	@OneToMany(mappedBy = "car")
+	@ManyToOne
 	private Booking booking;
 
 	public Car(int id, String name) {
