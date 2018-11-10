@@ -18,6 +18,9 @@ public class Feedback {
 	private int id;
 	private String text;
 
+	@OneToOne
+	private Client client;
+
 	@OneToOne(mappedBy = "feedback")
 	private Booking booking;
 

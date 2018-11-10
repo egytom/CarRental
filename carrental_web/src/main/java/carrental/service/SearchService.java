@@ -36,7 +36,7 @@ public class SearchService {
 	
 	@Transactional
 	public List<Car> searchCarByPrice(int maxPrice){
-		return carRepository.findByPrice(maxPrice);
+		return carRepository.findByRentalPrice(maxPrice);
 	}
 	
 	@Transactional

@@ -19,7 +19,7 @@ public class CarrentalApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		carRepository.save(new Car());
+		//carRepository.save(new Car());
 	}
 		
 }

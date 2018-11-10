@@ -24,7 +24,7 @@ public class Booking {
     @ManyToOne
     private Admin admin;
 
-    @OneToOne
+    @ManyToOne
     private Car car;
 
     @OneToOne
