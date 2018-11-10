@@ -29,5 +29,11 @@ public class Payment {
 		super();
 		this.amount = amount;
 	}
+
+	public Payment(int id, int amount) {
+		super();
+		this.id = id;
+		this.amount = amount;
+	}
     
 }
