@@ -1,16 +1,21 @@
 package carrental.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Admin {
 
@@ -21,16 +26,6 @@ public class Admin {
 
 	@OneToMany(mappedBy = "admin")
 	private List<Booking> booking;
-	
-	public Admin() {
-	}
-	
-	public Admin(int id, String password, List<Booking> booking) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.booking = booking;
-	}
 
 	public Admin(int id) {
 		super();

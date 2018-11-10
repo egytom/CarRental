@@ -1,14 +1,21 @@
 package carrental.model;
 
-import javax.persistence.*;
-
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Category {
 	
@@ -21,7 +28,13 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Car> car;
 
-    public Category() {
-    }
+	public Category(int id, String brand) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.brand = brand;
+	}
+
+    
     
 }

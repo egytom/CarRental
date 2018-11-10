@@ -1,14 +1,21 @@
 package carrental.model;
 
-import javax.persistence.*;
-
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Type {
 	
@@ -16,8 +23,8 @@ public class Type {
 	@GeneratedValue
 	private int id;
 	
-	private enum GearType {manual, auto};
-	private enum FuelType {diesel, gasoline, electric};
+	public enum GearType {manual, auto};
+	public enum FuelType {diesel, gasoline, electric};
 	
 	private GearType gearType;
 	private FuelType fuelType;
@@ -25,8 +32,5 @@ public class Type {
 
 	@OneToMany(mappedBy = "type")
 	private List<Car> car;
-
-	public Type() {
-	}
 
 }

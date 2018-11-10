@@ -5,16 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.awt.print.Book;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Payment {
-	
+
 	@Id
 	@GeneratedValue
     private int id;
@@ -23,7 +25,9 @@ public class Payment {
     @OneToOne(mappedBy = "price")
     private Booking booking;
 
-    public Payment() {
-    }
+	public Payment(int amount) {
+		super();
+		this.amount = amount;
+	}
     
 }

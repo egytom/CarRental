@@ -9,12 +9,11 @@ import carrental.model.Client;
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 	
 	Client create(int id, String name);
-	
-	Client update(Client car);
 
 	List<Client> findByPhoneNumber(String phoneNumber);
 	
 	List<Client> findByEmailAddress(String emailAddress);
 	
 	List<Client> findByName(String name);
+	
 }

@@ -9,8 +9,6 @@ import java.util.List;
 public interface TypeRepository extends JpaRepository<Type, Integer> {	
 	
 	Type create();
-	
-	Type update(Type type);
 
 	List<Type> findById(int id);
 	

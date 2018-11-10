@@ -15,7 +15,5 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
 	List<Feedback> findByClient(Client client);
 	
 	Feedback create(int id, String text);
-	
-	Feedback update(Feedback feedback);
 
 }

@@ -9,6 +9,7 @@ import carrental.model.Category;
 import carrental.model.Type;
 
 public interface CarRepository extends JpaRepository<Car, Integer> {
+	
 	List<Car> findByName(String name);
 
 	List<Car> findByType(Type type);
@@ -18,9 +19,5 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 	List<Car> findByRentalPrice(int rentalPrice);
 
 	List<Car> findAll();
-	
-	Car create(int id, String name);
-	
-	Car update(Car car);
-	
+
 }

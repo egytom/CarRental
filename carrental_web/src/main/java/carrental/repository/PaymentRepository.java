@@ -10,7 +10,6 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
     Payment create(int amount);
 
-    Payment update(Payment payment);
-
     List<Payment> findById(int id);
+    
 }

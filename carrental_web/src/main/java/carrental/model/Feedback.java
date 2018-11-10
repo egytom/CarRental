@@ -5,11 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Feedback {
 	
@@ -23,12 +27,10 @@ public class Feedback {
 
 	@OneToOne(mappedBy = "feedback")
 	private Booking booking;
-
-	public Feedback() {
-	}
 	
-	public Feedback(String text) {
+	public Feedback(int id, String text) {
 		super();
+		this.id = id;
 		this.text = text;
 	}
 
