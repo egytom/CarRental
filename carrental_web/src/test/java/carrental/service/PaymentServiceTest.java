@@ -11,8 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
-
 import static org.mockito.Mockito.when;
 import static org.junit.Assert.*;
 
@@ -33,7 +31,7 @@ public class PaymentServiceTest {
         Booking booking = new Booking(1, new Car(1, "Opel Vectra"), new Payment(1, 5000));
         client.addBooking(booking);
 
-        when(bookingRepository.findById(1)).thenReturn(Arrays.asList(booking));
+        when(bookingRepository.findById(1)).thenReturn(java.util.Optional.of(booking));
 
         //ACT
         paymentService.pay(new Client("Teszt Kliens", "teszt@kliens,hu"), 1);

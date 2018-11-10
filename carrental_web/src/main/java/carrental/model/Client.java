@@ -1,5 +1,6 @@
 package carrental.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -43,6 +44,13 @@ public class Client {
 		super();
 		this.name = name;
 		this.emailAddress = emailAddress;
+	}
+
+	public void addBooking(Booking booking) {
+		booking.setClient(this);
+		if (this.booking == null)
+			this.booking = new ArrayList<>();
+		this.booking.add(booking);
 	}
 
 }
