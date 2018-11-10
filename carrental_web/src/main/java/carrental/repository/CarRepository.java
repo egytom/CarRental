@@ -18,6 +18,4 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 	
 	List<Car> findByRentalPrice(int rentalPrice);
 
-	List<Car> findAll();
-
 }

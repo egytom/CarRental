@@ -34,7 +34,8 @@ public class BookingService {
         booking.setCar(car);
 
         int amount = car.getRentalPrice();  //payment létrehozása és összekötése a klienssel és a foglalással
-        Payment payment = paymentRepository.create(amount);
+        Payment payment = new Payment(amount);
+        paymentRepository.save(payment);
         booking.setPrice(payment);
 
         return booking;

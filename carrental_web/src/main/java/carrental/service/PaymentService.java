@@ -7,6 +7,8 @@ import carrental.model.Client;
 import carrental.repository.BookingRepository;
 import carrental.repository.PaymentRepository;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,9 @@ public class PaymentService {
 	@Transactional
     public void pay(Client client, int bookingId) {
     	
-        Booking booking = bookingRepository.findById(bookingId).get(0); // a foglalas, amit most kifizet
-
+        Optional<Booking> bookingOptional = bookingRepository.findById(bookingId); // a foglalas, amit most kifizet
+        Booking booking = bookingOptional.get();
+        
         paymentRepository.delete(booking.getPrice());  // adott fizetesi kotelezettseg torlodik
         client.getBooking().remove(booking);		// adott foglalás törlése, teljesítettük a fizetést
 

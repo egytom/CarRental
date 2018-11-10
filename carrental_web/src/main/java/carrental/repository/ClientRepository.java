@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import carrental.model.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Integer> {
-	
-	Client create(int id, String name);
 
 	List<Client> findByPhoneNumber(String phoneNumber);
 	

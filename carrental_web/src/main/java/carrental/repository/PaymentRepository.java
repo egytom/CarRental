@@ -1,15 +1,14 @@
 package carrental.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import carrental.model.Booking;
 import carrental.model.Payment;
-
-import java.util.List;
 
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
-    Payment create(int amount);
-
-    List<Payment> findById(int id);
+    List<Payment> findByBooking(Booking booking);
     
 }
