@@ -53,4 +53,12 @@ public class Client {
 		this.booking.add(booking);
 	}
 
+	public Client(int id, String name, String emailAddress, String phoneNumber) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+	}
+
 }

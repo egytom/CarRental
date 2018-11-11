@@ -6,7 +6,11 @@ import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static org.mockito.Mockito.when;
+import java.util.Arrays;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +34,7 @@ public class SearchServiceTest {
 	@Mock
 	CarRepository carRepository;
 	
-	
+	//Egyed Tamás tesztje
 	@Test
 	public void testCarCreation() throws Exception {
 		
@@ -52,6 +56,7 @@ public class SearchServiceTest {
 		
 	}
 	
+	//Egyed Tamás tesztje
 	@Test
 	public void testTypeModification() throws Exception {
 		
@@ -71,6 +76,7 @@ public class SearchServiceTest {
 		
 	}
 	
+	//Egyed Tamás tesztje
 	@Test
 	public void testContainsBothCarList() throws Exception {
 		
@@ -112,6 +118,25 @@ public class SearchServiceTest {
 		assertThat(carResultList.get(0).getName(), equalTo("Ferrari California 3"));
 		assertThat(carResultList.get(1).getName(), equalTo("Ferrari California 4"));
 		assertThat(carResultList.size(), equalTo(2));
+		
+	}
+	
+	//Kurdi Botond tesztje
+	@Test
+	public void testSearchCarByNameAndType() {
+		
+		Type type = new Type(2, GearType.manual, FuelType.gasoline);
+		Car car = new Car(3, "Ferrari", type);
+		car = carRepository.save(car);
+		
+		when(carRepository.findByName	("Ferrari")).thenReturn(Arrays.asList(car));
+		when(carRepository.findByType(type)).thenReturn(Arrays.asList(car));
+		
+		car = searchService.searchCarByNameAndType("Ferrari", type).get(0);
+		
+		assertThat(car.getName(), equalTo("Ferrari"));
+		assertThat(car.getType(), equalTo(type));
+		
 		
 	}
 	

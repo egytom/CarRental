@@ -33,6 +33,7 @@ public class SearchServiceIT {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
+	//Egyed Tamás tesztje
 	@Test
 	public void testSearchCarByName() throws Exception {
 
@@ -52,6 +53,7 @@ public class SearchServiceIT {
 		
 	}
 	
+	//Egyed Tamás tesztje
 	@Test
 	public void testSearchCarByType() throws Exception {
 
@@ -68,6 +70,7 @@ public class SearchServiceIT {
 	
 	}
 	
+	//Egyed Tamás tesztje
 	@Test
 	public void testSearchCarByPrice() throws Exception {
 
@@ -91,7 +94,19 @@ public class SearchServiceIT {
 		
 		assertThat(car1.getRentalPrice(), equalTo(5000));
 		assertThat(car2.getRentalPrice(), equalTo(5000));
+	}
+	
+	//Kurdi Botond tesztje
+	@Test
+	public void testSearchCarByNameAndType() {
+		Type type = new Type(2, GearType.manual, FuelType.gasoline);
+		Car car = new Car(3, "Ferrari", type);
+		car = carRepository.save(car);
 		
+		car = searchService.searchCarByNameAndType("Ferrari", type).get(0);
+		
+		assertThat(car.getName(), equalTo("Ferrari"));
+		assertThat(car.getType(), equalTo(type));
 	}
 	
 }

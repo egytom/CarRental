@@ -40,4 +40,11 @@ public class Car {
 		this.type = type;
 	}
 
+	public Car(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+
 }
