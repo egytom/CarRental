@@ -155,5 +155,43 @@ public class SearchServiceTest {
 		
 		
 	}
-	
+
+	/**
+	 * Soós Sarolta tesztesetei
+	 */
+
+	@Test
+	public void testSearchCarByCategory() throws Exception {
+
+		//ARRANGE
+		Category category = new Category("Volkswagen");
+		Car car = new Car(15, "Polo", new Type(), category);
+
+		when(carRepository.findByCategory(category)).thenReturn(Arrays.asList(car));
+
+		//ACT
+		car = searchService.searchCarByCategory(category).get(0);
+
+		//ASSERT
+		assertThat(car.getCategory().getBrand(), equalTo("Volkswagen"));
+	}
+
+	@Test
+	public void testSearchCarByNameAndCategory() throws Exception {
+
+		//ARRANGE
+		Category category = new Category("Volkswagen");
+		Car car = new Car(15, "Passat", new Type(), category);
+
+		when(carRepository.findByCategory(category)).thenReturn(Arrays.asList(car));
+		when(carRepository.findByName("Passat")).thenReturn(Arrays.asList(car));
+
+		//ACT
+		car = searchService.searchCarByNameAndCategory("Passat", category).get(0);
+
+		//ASSERT
+		assertThat(car.getName(), equalTo("Passat"));
+		assertThat(car.getCategory().getBrand(), equalTo("Volkswagen"));
+
+	}
 }

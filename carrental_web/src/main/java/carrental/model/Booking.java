@@ -48,6 +48,14 @@ public class Booking {
         this.price = price;
     }
 
+    public Booking(int id, Car car, Payment price, Client client) {
+        super();
+        this.id = id;
+        this.car = car;
+        this.price = price;
+        this.client = client;
+    }
+
 	public Booking(int id) {
 		super();
 		this.id = id;

@@ -134,7 +134,17 @@ public class SearchServiceIT {
 	@Test
 	public void testSearchCarByNameAndCategory() throws Exception {
 
-		//TODO
+		//ARRANGE
+		Category category = new Category("Volkswagen");
+		Car car = new Car(15, "Passat", new Type(), category);
+		carRepository.save(car);
+
+		//ACT
+		car = searchService.searchCarByNameAndCategory("Passat", category).get(0);
+
+		//ASSERT
+		assertThat(car.getName(), equalTo("Passat"));
+		assertThat(car.getCategory().getBrand(), equalTo("Volkswagen"));
 
 	}
 }
