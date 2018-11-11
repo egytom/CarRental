@@ -1,5 +1,6 @@
 package carrental.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,8 +23,8 @@ public class Car {
 	private int id;
 	private int rentalPrice;
 	private String name;
-
-	@ManyToOne
+	
+	@Embedded
 	private Type type;
 
 	@ManyToOne
@@ -32,10 +33,11 @@ public class Car {
 	@ManyToOne
 	private Booking booking;
 
-	public Car(int id, String name) {
+	public Car(int id, String name, Type type) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.type = type;
 	}
 
 }

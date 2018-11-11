@@ -31,7 +31,6 @@ public class Category {
 	public Category(int id, String brand) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.brand = brand;
 	}
 

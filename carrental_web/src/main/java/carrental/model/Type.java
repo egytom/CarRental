@@ -1,11 +1,8 @@
 package carrental.model;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,22 +13,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Embeddable
 public class Type {
 	
-	@Id
-	@GeneratedValue
-	private int id;
-	private String name;
+	private int seatNumber;
 	
 	public enum GearType {manual, auto};
 	public enum FuelType {diesel, gasoline, electric};
 	
+	@Enumerated(EnumType.STRING)
 	private GearType gearType;
+	
+	@Enumerated(EnumType.STRING)
 	private FuelType fuelType;
-	private int seatNumber;
-
-	@OneToMany(mappedBy = "type")
-	private List<Car> car;
 
 }
