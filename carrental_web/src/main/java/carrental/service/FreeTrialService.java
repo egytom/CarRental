@@ -15,6 +15,7 @@ import carrental.model.Payment;
 import carrental.repository.BookingRepository;
 import carrental.repository.CarRepository;
 import carrental.repository.ClientRepository;
+import carrental.repository.PaymentRepository;
 
 @Service
 public class FreeTrialService {
@@ -28,31 +29,37 @@ public class FreeTrialService {
 	@Autowired
 	BookingRepository bookingRepository;
 	
+	@Autowired
+	PaymentRepository paymentRepository;
+	
 	@Transactional
-	public Booking createFreeTrial(Client client, Car car, Date from, Date to){
+	public Booking createFreeTrial(Client client, Car car, Date fromDate, Date toDate){
 		
 		Booking booking = new Booking();
 		
 		List<Client> clientBefore = clientRepository.findByName(client.getName());
 		
 		if(clientBefore.isEmpty()) 
-			booking = addFreeTrial(client, car, from, to);
+			addFreeTrial(booking, client, car, fromDate, toDate);
 		
 		return booking;
 		
 	}
 
-	private Booking addFreeTrial(Client client, Car car, Date from, Date to) {
-		Booking booking = new Booking(0, from, to, car, createPayment(0), client);
+	private void addFreeTrial(Booking booking, Client client, Car car, Date fromDate, Date toDate) {
+		booking.setFromDate(fromDate);
+		booking.setToDate(toDate);
+		booking.setCar(car);
+		booking.setPrice(createPayment(0));
+		booking.setClient(client);
+				
 		
 		finalizeClient(client, booking);
-		finalizeCar(car, booking);
-		
-		return bookingRepository.save(booking);
+		booking = bookingRepository.save(booking);
+		finalizeCar(car);
 	}
 
-	private void finalizeCar(Car car, Booking booking) {
-		car.setBooking(booking);
+	private void finalizeCar(Car car) {
 		car = carRepository.save(car);
 	}
 
@@ -66,7 +73,7 @@ public class FreeTrialService {
 	private Payment createPayment(int amount) {
 		Payment payment = new Payment();
 		payment.setAmount(amount);
-		return payment;
+		return paymentRepository.save(payment);
 	}
 	
 }

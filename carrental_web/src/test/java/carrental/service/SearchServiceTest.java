@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,14 +39,15 @@ public class SearchServiceTest {
 	 */
 
 	@Test
-	public void testCarCreation() throws Exception {
+	public void testCarCreation() {
 		
 		//ARRANGE
 		Car car = new Car(1, "Ferrari California", new Type(), new Category());
 		
-		when(carRepository.findById(1)).thenReturn(java.util.Optional.of(car));
+		when(carRepository.findByName("Ferrari California")).thenReturn(Arrays.asList(car));
 			
 		//ACT
+		car = searchService.searchCarByName("Ferrari California").get(0); 
 		Type type = new Type(2, GearType.auto, FuelType.gasoline);
 		Category category = new Category();
 		car.setType(type);
@@ -61,15 +63,16 @@ public class SearchServiceTest {
 	}
 
 	@Test
-	public void testTypeModification() throws Exception {
+	public void testTypeModification() {
 		
 		//ARRANGE
 		Type type = new Type(5, GearType.manual, FuelType.electric);
 		Car car = new Car(2, "Volvo", type, new Category());
 		
-		when(carRepository.findById(2)).thenReturn(java.util.Optional.of(car));
+		when(carRepository.findByType(type)).thenReturn(Arrays.asList(car));
 			
 		//ACT
+		car = searchService.searchCarByType(type).get(0);
 		type.setFuelType(FuelType.gasoline);
 		type.setGearType(GearType.auto);
 		type.setSeatNumber(7);
@@ -82,7 +85,7 @@ public class SearchServiceTest {
 	}
 
 	@Test
-	public void testContainsBothCarList() throws Exception {
+	public void testContainsBothCarList() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		//ARRANGE
 		String methodName = "containsBothCarList";
@@ -112,12 +115,6 @@ public class SearchServiceTest {
 		carList2.add(car3);
 		carList2.add(car4);
 		carList2.add(car5);
-		
-		when(carRepository.findById(1)).thenReturn(java.util.Optional.of(car1));
-		when(carRepository.findById(2)).thenReturn(java.util.Optional.of(car2));
-		when(carRepository.findById(3)).thenReturn(java.util.Optional.of(car3));
-		when(carRepository.findById(4)).thenReturn(java.util.Optional.of(car4));
-		when(carRepository.findById(5)).thenReturn(java.util.Optional.of(car5));
 			
 		//ACT
 		@SuppressWarnings("unchecked")
@@ -140,7 +137,6 @@ public class SearchServiceTest {
 		
 		Type type = new Type(2, GearType.manual, FuelType.gasoline);
 		Car car = new Car(3, "Ferrari", type);
-		car = carRepository.save(car);
 		
 		when(carRepository.findByName	("Ferrari")).thenReturn(Arrays.asList(car));
 		when(carRepository.findByType(type)).thenReturn(Arrays.asList(car));
@@ -148,8 +144,7 @@ public class SearchServiceTest {
 		car = searchService.searchCarByNameAndType("Ferrari", type).get(0);
 		
 		assertThat(car.getName(), equalTo("Ferrari"));
-		assertThat(car.getType(), equalTo(type));
-		
+		assertThat(car.getType().getFuelType(), equalTo(FuelType.gasoline));
 		
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -27,12 +28,15 @@ public class Booking {
 	private Date toDate;
 
 	@ManyToOne
+	@JoinColumn(name = "client")
 	private Client client;
 
 	@ManyToOne
+	@JoinColumn(name = "admin")
 	private Admin admin;
 
 	@ManyToOne
+	@JoinColumn(name = "car")
 	private Car car;
 
 	@OneToOne

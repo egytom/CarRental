@@ -22,6 +22,10 @@ import carrental.model.Feedback;
 import carrental.model.Type;
 import carrental.model.Type.FuelType;
 import carrental.model.Type.GearType;
+import carrental.repository.BookingRepository;
+import carrental.repository.CarRepository;
+import carrental.repository.ClientRepository;
+import carrental.repository.PaymentRepository;
 
 /**
 *
@@ -36,6 +40,18 @@ public class FreeTrialServiceTDD {
 	
 	@Autowired
 	FreeTrialService freeTrialService;
+	
+	@Autowired
+	CarRepository carRepository;
+	
+	@Autowired
+	ClientRepository clientRepository;
+	
+	@Autowired
+	BookingRepository bookingRepository;
+	
+	@Autowired
+	PaymentRepository paymentRepository;
 	
 	@Test
 	public void testFreeTrialCreation() throws Exception {
@@ -89,6 +105,25 @@ public class FreeTrialServiceTDD {
 		//ASSERT
 		assertThat(booking.getClient().getName(), equalTo("Egyed Tamás"));
 		assertThat(booking.getCar().getName(), equalTo("Ferrari"));
+		
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testFreeTrialFromAndToDate() throws Exception {
+
+		//ARRANGE
+		Client client = new Client(1, "Egyed Tamás", "egyed.t@gmail.com", "063012345678");
+		Car car = new Car(2, "Porsche", 
+				new Type(4, GearType.manual, FuelType.gasoline), 
+				new Category("Porsche"));
+				
+		//ACT
+		Booking booking = freeTrialService.createFreeTrial(client, car, new Date(2018, 11, 13), new Date(2018, 11, 14));
+		
+		//ASSERT
+		assertThat(booking.getFromDate(), equalTo(new Date(2018, 11, 13)));
+		assertThat(booking.getFromDate(), equalTo(new Date(2018, 11, 14)));
 		
 	}
 	
