@@ -54,7 +54,4 @@ public class Car {
 		this.type = type;
 	}
 
-	
-
-
 }

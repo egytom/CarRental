@@ -10,9 +10,11 @@ import carrental.model.Client;
 
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
-
+	
     List<Booking> findByClient(Client client);
-
+	
+    List<Booking> findByClient_Name(String clientName);
+  
     List<Booking> findByCar(Car car);
 
 }
