@@ -4,7 +4,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import carrental.model.Car;
 import carrental.repository.CarRepository;
-import carrental.repository.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +13,6 @@ public class DiscountService {
 	
 	@Autowired
     CarRepository carRepository;
-    
-	@Autowired
-	CategoryRepository categoryRepository;
 	
 	@Transactional
     public void discountCarsInCategory(String categoryName, int percent) {

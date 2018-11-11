@@ -27,17 +27,24 @@ public class Car {
 	@Embedded
 	private Type type;
 
-	@ManyToOne
+	@Embedded
 	private Category category;
 
 	@ManyToOne
 	private Booking booking;
 
-	public Car(int id, String name, Type type) {
+	public Car(int id, String name, Type type, Category category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
+		this.category = category;
+	}
+
+	public Car(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 
 }

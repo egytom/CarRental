@@ -1,11 +1,6 @@
 package carrental.model;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,24 +11,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Embeddable
 public class Category {
-	
-	@Id
-	@GeneratedValue
-    private int id;
-    private String name;
+
     private String brand;
-
-    @OneToMany(mappedBy = "category")
-    private List<Car> car;
-
-	public Category(int id, String brand) {
-		super();
-		this.id = id;
-		this.brand = brand;
-	}
-
-    
     
 }

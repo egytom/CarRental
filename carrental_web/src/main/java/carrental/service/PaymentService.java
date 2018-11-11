@@ -26,8 +26,9 @@ public class PaymentService {
     	
         Optional<Booking> bookingOptional = bookingRepository.findById(bookingId); // a foglalas, amit most kifizet
         Booking booking = bookingOptional.get();
-        
-        paymentRepository.delete(booking.getPrice());  // adott fizetesi kotelezettseg torlodik
+
+        if (booking.getPrice() != null)
+            paymentRepository.delete(booking.getPrice());  // adott fizetesi kotelezettseg torlodik
         client.getBooking().remove(booking);		// adott foglalás törlése, teljesítettük a fizetést
 
     }
