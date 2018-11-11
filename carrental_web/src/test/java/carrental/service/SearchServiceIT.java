@@ -3,6 +3,7 @@ package carrental.service;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import carrental.model.Category;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import carrental.model.Type;
 import carrental.model.Type.FuelType;
 import carrental.model.Type.GearType;
 import carrental.repository.CarRepository;
-import carrental.repository.CategoryRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,17 +29,19 @@ public class SearchServiceIT {
 	
 	@Autowired
 	CarRepository carRepository;
-	
-	@Autowired
-	CategoryRepository categoryRepository;
+
+	/**
+	 *
+	 * Egyed Tamás Barnabás tesztesetei
+	 */
 	
 	//Egyed Tamás tesztje
 	@Test
 	public void testSearchCarByName() throws Exception {
 
 		//ARRANGE
-		Car car1 = new Car(1, "Ferrari", new Type());
-		Car car2 = new Car(2, "Porsche", new Type());
+		Car car1 = new Car(1, "Ferrari", new Type(), new Category());
+		Car car2 = new Car(2, "Porsche", new Type(), new Category());
 		car1 = carRepository.save(car1);
 		car2 = carRepository.save(car2);
 				
@@ -59,7 +61,7 @@ public class SearchServiceIT {
 
 		//ARRANGE
 		Type type = new Type(2, GearType.manual, FuelType.gasoline);
-		Car car = new Car(3, "Ferrari", type);
+		Car car = new Car(3, "Ferrari", type, new Category());
 		car = carRepository.save(car);
 				
 		//ACT
@@ -75,8 +77,8 @@ public class SearchServiceIT {
 	public void testSearchCarByPrice() throws Exception {
 
 		//ARRANGE
-		Car car1 = new Car(1, "Ferrari", new Type());
-		Car car2 = new Car(2, "Porsche", new Type());
+		Car car1 = new Car(1, "Ferrari", new Type(), new Category());
+		Car car2 = new Car(2, "Porsche", new Type(), new Category());
 		
 		car1.setRentalPrice(5000);
 		car2.setRentalPrice(5000);
@@ -108,5 +110,31 @@ public class SearchServiceIT {
 		assertThat(car.getName(), equalTo("Ferrari"));
 		assertThat(car.getType(), equalTo(type));
 	}
-	
+
+	/**
+	 *
+	 * Soós Sarolta tesztesetei
+	 */
+
+	@Test
+	public void testSearchCarByCategory() throws Exception {
+
+		//ARRANGE
+		Category category = new Category("Volkswagen");
+		Car car = new Car(15, "Polo", new Type(), category);
+		carRepository.save(car);
+
+		//ACT
+		car = searchService.searchCarByCategory(category).get(0);
+
+		//ASSERT
+		assertThat(car.getCategory().getBrand(), equalTo("Volkswagen"));
+	}
+
+	@Test
+	public void testSearchCarByNameAndCategory() throws Exception {
+
+		//TODO
+
+	}
 }

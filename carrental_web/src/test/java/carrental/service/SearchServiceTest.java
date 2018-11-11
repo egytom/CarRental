@@ -3,6 +3,7 @@ package carrental.service;
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -33,13 +34,13 @@ public class SearchServiceTest {
 	
 	@Mock
 	CarRepository carRepository;
-	
+
 	//Egyed Tamás tesztje
 	@Test
 	public void testCarCreation() throws Exception {
 		
 		//ARRANGE
-		Car car = new Car(1, "Ferrari California", new Type());
+		Car car = new Car(1, "Ferrari California", new Type(), new Category());
 			
 		//ACT
 		Type type = new Type(2, GearType.auto, FuelType.gasoline);
@@ -62,7 +63,7 @@ public class SearchServiceTest {
 		
 		//ARRANGE
 		Type type = new Type(5, GearType.manual, FuelType.electric);
-		Car car = new Car(2, "Volvo", type);
+		Car car = new Car(2, "Volvo", type, new Category());
 			
 		//ACT
 		type.setFuelType(FuelType.gasoline);
@@ -92,11 +93,11 @@ public class SearchServiceTest {
 		Method method = searchService.getClass().getDeclaredMethod(methodName, argClasses);
 		method.setAccessible(true);
 		
-		Car car1 = new Car(1, "Ferrari California 1", new Type());
-		Car car2 = new Car(2, "Ferrari California 2", new Type());
-		Car car3 = new Car(3, "Ferrari California 3", new Type());
-		Car car4 = new Car(4, "Ferrari California 4", new Type());
-		Car car5 = new Car(5, "Ferrari California 5", new Type());
+		Car car1 = new Car(1, "Ferrari California 1", new Type(), new Category());
+		Car car2 = new Car(2, "Ferrari California 2", new Type(), new Category());
+		Car car3 = new Car(3, "Ferrari California 3", new Type(), new Category());
+		Car car4 = new Car(4, "Ferrari California 4", new Type(), new Category());
+		Car car5 = new Car(5, "Ferrari California 5", new Type(), new Category());
 		
 		List<Car> carList1 = new ArrayList<Car>();
 		List<Car> carList2 = new ArrayList<Car>();

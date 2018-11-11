@@ -1,5 +1,6 @@
 package carrental;
 
+import carrental.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ public class CarrentalApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		carRepository.save(new Car(1, "Ferrari", new Type()));
+		carRepository.save(new Car(1, "Ferrari", new Type(), new Category()));
 	}
 
 }
