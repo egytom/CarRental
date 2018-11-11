@@ -1,0 +1,5 @@
+Free Trial funkcio (friss felhasznalok kiprobalhatnak egy napon keresztul egy kocsit ingyen):
+• Client regisztralasa, ha meg nem letezik
+• kocsi kikeresese, amivel probalni szeretne
+• automatikus feedback kuldese,
+• booking letrehozasa 0 ft -os szamlaval

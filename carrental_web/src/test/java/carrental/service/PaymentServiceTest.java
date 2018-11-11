@@ -1,19 +1,24 @@
 package carrental.service;
 
-import carrental.model.*;
-import carrental.repository.BookingRepository;
-import carrental.repository.PaymentRepository;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.Mockito.when;
-import static org.junit.Assert.*;
+import carrental.model.Booking;
+import carrental.model.Car;
+import carrental.model.Category;
+import carrental.model.Client;
+import carrental.model.Payment;
+import carrental.model.Type;
+import carrental.repository.BookingRepository;
+import carrental.repository.PaymentRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PaymentServiceTest {

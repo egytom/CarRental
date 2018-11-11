@@ -55,7 +55,8 @@ public class FeedbackService {
         properties.put("mail.password", password);
 
         // Get the default Session object.
-        Authenticator auth = new Authenticator()
+        @SuppressWarnings("unused")
+		Authenticator auth = new Authenticator()
         {
             public PasswordAuthentication getPasswordAuthentication()
             {
