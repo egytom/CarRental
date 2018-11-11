@@ -4,7 +4,6 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +28,6 @@ public class Car {
 
 	@Embedded
 	private Category category;
-
-	@ManyToOne
-	private Booking booking;
 
 	public Car(int id, String name, Type type, Category category) {
 		super();
