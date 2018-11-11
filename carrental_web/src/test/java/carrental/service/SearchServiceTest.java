@@ -45,6 +45,8 @@ public class SearchServiceTest {
 		
 		//ARRANGE
 		Car car = new Car(1, "Ferrari California", new Type(), new Category());
+		
+		when(carRepository.findById(1)).thenReturn(java.util.Optional.of(car));
 			
 		//ACT
 		Type type = new Type(2, GearType.auto, FuelType.gasoline);
@@ -67,6 +69,8 @@ public class SearchServiceTest {
 		//ARRANGE
 		Type type = new Type(5, GearType.manual, FuelType.electric);
 		Car car = new Car(2, "Volvo", type, new Category());
+		
+		when(carRepository.findById(2)).thenReturn(java.util.Optional.of(car));
 			
 		//ACT
 		type.setFuelType(FuelType.gasoline);
@@ -111,6 +115,12 @@ public class SearchServiceTest {
 		carList2.add(car3);
 		carList2.add(car4);
 		carList2.add(car5);
+		
+		when(carRepository.findById(1)).thenReturn(java.util.Optional.of(car1));
+		when(carRepository.findById(2)).thenReturn(java.util.Optional.of(car2));
+		when(carRepository.findById(3)).thenReturn(java.util.Optional.of(car3));
+		when(carRepository.findById(4)).thenReturn(java.util.Optional.of(car4));
+		when(carRepository.findById(5)).thenReturn(java.util.Optional.of(car5));
 			
 		//ACT
 		@SuppressWarnings("unchecked")
