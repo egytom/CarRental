@@ -35,7 +35,11 @@ public class SearchServiceTest {
 	@Mock
 	CarRepository carRepository;
 
-	//Egyed Tamás tesztje
+	/**
+	 *
+	 * Egyed Tamás Barnabás tesztesetei
+	 */
+
 	@Test
 	public void testCarCreation() throws Exception {
 		
@@ -56,8 +60,7 @@ public class SearchServiceTest {
 		assertThat(car.getCategory(), equalTo(category));
 		
 	}
-	
-	//Egyed Tamás tesztje
+
 	@Test
 	public void testTypeModification() throws Exception {
 		
@@ -76,8 +79,7 @@ public class SearchServiceTest {
 		assertThat(car.getType().getSeatNumber(), equalTo(7));
 		
 	}
-	
-	//Egyed Tamás tesztje
+
 	@Test
 	public void testContainsBothCarList() throws Exception {
 		
@@ -121,8 +123,11 @@ public class SearchServiceTest {
 		assertThat(carResultList.size(), equalTo(2));
 		
 	}
-	
-	//Kurdi Botond tesztje
+
+	/**
+	 * Kurdi Botond tesztesete
+	 */
+
 	@Test
 	public void testSearchCarByNameAndType() {
 		

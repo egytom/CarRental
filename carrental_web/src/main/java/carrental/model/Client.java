@@ -46,7 +46,7 @@ public class Client {
 		this.emailAddress = emailAddress;
 	}
 
-	public Client(int is, String name, String emailAddress, String phoneNumber) {
+	public Client(int id, String name, String emailAddress, String phoneNumber) {
 		super();
 		this.id = id;
 		this.name = name;

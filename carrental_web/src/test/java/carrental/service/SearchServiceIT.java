@@ -34,8 +34,7 @@ public class SearchServiceIT {
 	 *
 	 * Egyed Tamás Barnabás tesztesetei
 	 */
-	
-	//Egyed Tamás tesztje
+
 	@Test
 	public void testSearchCarByName() throws Exception {
 
@@ -54,8 +53,7 @@ public class SearchServiceIT {
 		assertThat(car2.getName(), equalTo("Porsche"));
 		
 	}
-	
-	//Egyed Tamás tesztje
+
 	@Test
 	public void testSearchCarByType() throws Exception {
 
@@ -71,8 +69,7 @@ public class SearchServiceIT {
 		assertThat(car.getName(), equalTo("Ferrari"));
 	
 	}
-	
-	//Egyed Tamás tesztje
+
 	@Test
 	public void testSearchCarByPrice() throws Exception {
 
@@ -97,8 +94,11 @@ public class SearchServiceIT {
 		assertThat(car1.getRentalPrice(), equalTo(5000));
 		assertThat(car2.getRentalPrice(), equalTo(5000));
 	}
-	
-	//Kurdi Botond tesztje
+
+	/**
+	 * Kurdi Botond tesztesete
+	 */
+
 	@Test
 	public void testSearchCarByNameAndType() {
 		Type type = new Type(2, GearType.manual, FuelType.gasoline);
