@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,8 @@ public class FreeTrialServiceTDD {
 				new Category("Ferrari"));
 				
 		//ACT
-		Booking booking = freeTrialService.createFreeTrial(client, car);
+		@SuppressWarnings("deprecation")
+		Booking booking = freeTrialService.createFreeTrial(client, car, new Date(2018, 11, 13), new Date(2018, 11, 14));
 		
 		//ASSERT
 		assertThat(booking.getClass(), equalTo(Booking.class));
@@ -63,10 +65,30 @@ public class FreeTrialServiceTDD {
 				new Category("Ferrari"));
 				
 		//ACT
-		Booking booking = freeTrialService.createFreeTrial(client, car);
+		@SuppressWarnings("deprecation")
+		Booking booking = freeTrialService.createFreeTrial(client, car, new Date(2018, 11, 13), new Date(2018, 11, 14));
 		
 		//ASSERT
 		assertThat(booking.getClient().getName(), equalTo("Egyed Tamás"));
+		
+	}
+	
+	@Test
+	public void testFreeTrialCreationWithClientAndCar() throws Exception {
+
+		//ARRANGE
+		Client client = new Client(1, "Egyed Tamás", "egyed.t@gmail.com", "063012345678");
+		Car car = new Car(1, "Ferrari", 
+				new Type(2, GearType.manual, FuelType.gasoline), 
+				new Category("Ferrari"));
+				
+		//ACT
+		@SuppressWarnings("deprecation")
+		Booking booking = freeTrialService.createFreeTrial(client, car, new Date(2018, 11, 13), new Date(2018, 11, 14));
+		
+		//ASSERT
+		assertThat(booking.getClient().getName(), equalTo("Egyed Tamás"));
+		assertThat(booking.getCar().getName(), equalTo("Ferrari"));
 		
 	}
 	

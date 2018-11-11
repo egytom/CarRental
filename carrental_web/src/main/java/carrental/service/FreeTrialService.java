@@ -1,6 +1,7 @@
 package carrental.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,30 +29,44 @@ public class FreeTrialService {
 	BookingRepository bookingRepository;
 	
 	@Transactional
-	public Booking createFreeTrial(Client client, Car car){
+	public Booking createFreeTrial(Client client, Car car, Date from, Date to){
 		
 		Booking booking = new Booking();
 		
-		
 		List<Client> clientBefore = clientRepository.findByName(client.getName());
 		
-		if(clientBefore.isEmpty()) {
-			Payment payment = new Payment();
-			payment.setAmount(0);
-			
-			booking = new Booking(0, car, payment, client);
-			
-			List<Booking> bookingList = new ArrayList<Booking>();
-			bookingList.add(booking);
-			client.setBooking(bookingList);
-			
-			client = clientRepository.save(client);
-			
-			booking = bookingRepository.save(booking);
-		}
+		if(clientBefore.isEmpty()) 
+			booking = addFreeTrial(client, car, from, to);
 		
 		return booking;
 		
+	}
+
+	private Booking addFreeTrial(Client client, Car car, Date from, Date to) {
+		Booking booking = new Booking(0, from, to, car, createPayment(0), client);
+		
+		finalizeClient(client, booking);
+		finalizeCar(car, booking);
+		
+		return bookingRepository.save(booking);
+	}
+
+	private void finalizeCar(Car car, Booking booking) {
+		car.setBooking(booking);
+		car = carRepository.save(car);
+	}
+
+	private void finalizeClient(Client client, Booking booking) {
+		List<Booking> bookingList = new ArrayList<Booking>();
+		bookingList.add(booking);
+		client.setBooking(bookingList);
+		client = clientRepository.save(client);
+	}
+
+	private Payment createPayment(int amount) {
+		Payment payment = new Payment();
+		payment.setAmount(amount);
+		return payment;
 	}
 	
 }
