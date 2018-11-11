@@ -1,5 +1,6 @@
 package carrental.service;
 
+import carrental.model.Category;
 import org.springframework.transaction.annotation.Transactional;
 
 import carrental.model.Car;
@@ -15,9 +16,9 @@ public class DiscountService {
     CarRepository carRepository;
 	
 	@Transactional
-    public void discountCarsInCategory(String categoryName, int percent) {
+    public void discountCarsInCategory(Category category, int percent) {
 
-        for (Car car : carRepository.findAll()) 
+        for (Car car : carRepository.findByCategory(category))
            car.setRentalPrice((int) (car.getRentalPrice() * (1 - percent / 100.0)));
               
     }

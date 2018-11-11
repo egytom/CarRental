@@ -15,7 +15,7 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 	List<Car> findByType(Type type);
 
 	List<Car> findByCategory(Category category);
-	
+
 	List<Car> findByRentalPrice(int rentalPrice);
 
 }

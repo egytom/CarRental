@@ -191,4 +191,59 @@ public class SearchServiceTest {
 		assertThat(car.getCategory().getBrand(), equalTo("Volkswagen"));
 
 	}
+
+	/**
+	 Somogyi Balázs tesztesetei
+	 */
+
+	@Test
+    public void testSearchCarByCategoryAndType() throws Exception {
+
+	    //ARRANGE
+        Category category = new Category("Bugatti");
+        Type type = new Type(2, GearType.manual, FuelType.gasoline);
+        Car car = new Car(20, "Chiron", type, category);
+
+        when(carRepository.findByCategory(category)).thenReturn(Arrays.asList(car));
+        when(carRepository.findByType(type)).thenReturn(Arrays.asList(car));
+
+        //ACT
+        car = searchService.searchCarByCategoryAndType(category, type).get(0);
+
+        //ASSERT
+        assertThat(car.getType().getFuelType(), equalTo(FuelType.gasoline));
+        assertThat(car.getType().getGearType(), equalTo(GearType.manual));
+        assertThat(car.getType().getSeatNumber(), equalTo(2));
+
+        assertThat(car.getCategory().getBrand(), equalTo("Bugatti"));
+    }
+
+    @Test
+    public void testSearchCarByNameAndCategoryAndType() throws Exception {
+
+	    //ARRANGE
+        Category category = new Category("Bugatti");
+        Type type = new Type(2, GearType.manual, FuelType.gasoline);
+        String carName = "Chiron";
+
+        Car car = new Car(20, carName, type, category);
+
+        when(carRepository.findByCategory(category)).thenReturn(Arrays.asList(car));
+        when(carRepository.findByType(type)).thenReturn(Arrays.asList(car));
+        when(carRepository.findByName(carName)).thenReturn(Arrays.asList(car));
+
+        //ACT
+        car = searchService.searchCarByNameAndCategoryAndType(carName, category, type).get(0);
+
+        //ASSERT
+        assertThat(car.getType().getFuelType(), equalTo(FuelType.gasoline));
+        assertThat(car.getType().getGearType(), equalTo(GearType.manual));
+        assertThat(car.getType().getSeatNumber(), equalTo(2));
+
+        assertThat(car.getCategory().getBrand(), equalTo("Bugatti"));
+        assertThat(car.getName(), equalTo("Chiron"));
+
+    }
+
+
 }

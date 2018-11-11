@@ -15,5 +15,5 @@ import lombok.Setter;
 public class Category {
 
     private String brand;
-    
+
 }
