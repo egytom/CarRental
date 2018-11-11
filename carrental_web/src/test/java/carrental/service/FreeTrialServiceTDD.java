@@ -123,7 +123,7 @@ public class FreeTrialServiceTDD {
 		
 		//ASSERT
 		assertThat(booking.getFromDate(), equalTo(new Date(2018, 11, 13)));
-		assertThat(booking.getFromDate(), equalTo(new Date(2018, 11, 14)));
+		assertThat(booking.getToDate(), equalTo(new Date(2018, 11, 14)));
 		
 	}
 	
