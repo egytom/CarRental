@@ -1,6 +1,9 @@
 package carrental.service;
 
+import carrental.model.Car;
+import carrental.model.Category;
 import carrental.model.Client;
+import carrental.model.Payment;
 import carrental.repository.CarRepository;
 import carrental.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,20 @@ public class LoyaltyPointService {
     @Transactional
     public void addLoyaltyPoints(Client client) {
         Date date = Calendar.getInstance().getTime();
+
+        getDiscount(client);
+
         if(differenceBetweenDates(client, date) <= 0) {
             client.setLoyaltyPoint(client.getLoyaltyPoint()+5);
+        }
+    }
+
+
+    private void getDiscount(Client client) {
+        if(client.getLoyaltyPoint() > 0) {
+            int priceAfterDiscount = (int)(client.getBooking().get(0).getPrice().getAmount() *(1 - client.getLoyaltyPoint() / 100.0));
+            Payment payment = new Payment(priceAfterDiscount);
+            client.getBooking().get(0).setPrice(payment);
         }
     }
 

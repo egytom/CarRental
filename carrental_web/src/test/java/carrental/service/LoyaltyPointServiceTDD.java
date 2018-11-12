@@ -57,7 +57,29 @@ public class LoyaltyPointServiceTDD {
 
         //ASSERT
         assertThat(client.getLoyaltyPoint(), equalTo(5));
+    }
 
+    @Test
+    public void testDiscountIfHasLoyaltyPoint() throws Exception{
+
+        //ARRANGE
+        initialize();
+        client.setLoyaltyPoint(10);
+
+        Client client2 = new Client();
+        Payment payment = new Payment(10000);
+        Booking booking = new Booking(1, new Car(), payment, client2);
+        client2.addBooking(booking);
+
+
+        //ACT
+        loyaltyPointService.addLoyaltyPoints(client);
+
+        //ASSERT
+        double delta = 0.00001;
+
+        assertThat((double)client.getBooking().get(0).getPrice().getAmount(), closeTo(9000, delta));
+        assertThat((double)client2.getBooking().get(0).getPrice().getAmount(), closeTo(10000, delta));
     }
 
 
