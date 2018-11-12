@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import carrental.model.Booking;
 import carrental.model.Car;
@@ -29,7 +30,10 @@ public class BookingService {
 
         booking.setCar(car);
 
-        int amount = car.getRentalPrice();  //payment létrehozása és összekötése a klienssel és a foglalással
+        long bookingLength = toDate.getTime() - fromDate.getTime();
+        long bookingLengthInDays = TimeUnit.DAYS.convert(bookingLength, TimeUnit.MILLISECONDS);
+
+        int amount = car.getRentalPrice()* (int)bookingLengthInDays ;  //payment létrehozása és összekötése a klienssel és a foglalással
         Payment payment = new Payment(amount);
         paymentRepository.save(payment);
         booking.setPrice(payment);
