@@ -1,0 +1,2 @@
+Ha idõben visszahozza a kliens az autót, akkor hûségpontot kap, illetve ha már van hûségpontja, akkor 
+kedvezményben részesül.
