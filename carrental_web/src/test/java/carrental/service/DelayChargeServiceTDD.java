@@ -4,9 +4,11 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertThat;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -55,14 +57,21 @@ public class DelayChargeServiceTDD {
 		Date toDate = new GregorianCalendar(2018, Calendar.OCTOBER, 15).getTime();
 		Date fromDate = new GregorianCalendar(2018, Calendar.OCTOBER, 10).getTime();
 		Booking booking = new Booking(1, fromDate, toDate, payment);
+		Date today = Calendar.getInstance().getTime();
 		
+		client = clientRepository.save(client);
+		payment = paymentRepository.save(payment);
+		
+		long diffInMillies = Math.abs(today.getTime() - toDate.getTime());
+	    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+		
+	    int expectedPriceAfterCharge = (int) (payment.getAmount()+(diff*200));
 		client.addBooking(booking);
 		booking.setClient(client);
+		List<Client> clients = new ArrayList<Client>();
+		clients.add(client);
+		delayChargeService.delayCharge(clients);
 		
-		delayChargeService.delayCharge();
-		
-		
-		int expectedPriceAfterCharge = 5400;
 		double delta = 0.00001;
 		assertThat((double)client.getBooking().get(0).getPrice().getAmount(), closeTo(expectedPriceAfterCharge, delta));
 	}

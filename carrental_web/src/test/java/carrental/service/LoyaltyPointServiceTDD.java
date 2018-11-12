@@ -19,6 +19,7 @@ import java.util.Date;
 
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -56,15 +57,37 @@ public class LoyaltyPointServiceTDD {
 
         //ASSERT
         assertThat(client.getLoyaltyPoint(), equalTo(5));
+    }
 
+    @Test
+    public void testDiscountIfHasLoyaltyPoint() throws Exception{
+
+        //ARRANGE
+        initialize();
+        client.setLoyaltyPoint(10);
+
+        Client client2 = new Client();
+        Payment payment = new Payment(10000);
+        Booking booking = new Booking(1, new Car(), payment, client2);
+        client2.addBooking(booking);
+
+
+        //ACT
+        loyaltyPointService.addLoyaltyPoints(client);
+
+        //ASSERT
+        double delta = 0.00001;
+
+        assertThat((double)client.getBooking().get(0).getPrice().getAmount(), closeTo(9000, delta));
+        assertThat((double)client2.getBooking().get(0).getPrice().getAmount(), closeTo(10000, delta));
     }
 
 
     private void initialize() {
-        Calendar cal = setCalendar();
+        Calendar cal = setCalendar(2018, 5);
         fromDate = cal.getTime();
 
-        cal.set(Calendar.DAY_OF_MONTH, 22);
+        cal.set(Calendar.DAY_OF_MONTH, 13);
         toDate = cal.getTime();
 
         car = new Car();
@@ -77,11 +100,11 @@ public class LoyaltyPointServiceTDD {
         client.addBooking(booking);
     }
 
-    private Calendar setCalendar() {
+    private Calendar setCalendar(int year, int day) {
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2018);
+        cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, Calendar.NOVEMBER);
-        cal.set(Calendar.DAY_OF_MONTH, 10);
+        cal.set(Calendar.DAY_OF_MONTH, day);
         return cal;
     }
 }
