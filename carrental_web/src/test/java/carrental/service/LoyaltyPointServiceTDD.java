@@ -19,6 +19,7 @@ import java.util.Date;
 
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -61,10 +62,10 @@ public class LoyaltyPointServiceTDD {
 
 
     private void initialize() {
-        Calendar cal = setCalendar();
+        Calendar cal = setCalendar(2018, 5);
         fromDate = cal.getTime();
 
-        cal.set(Calendar.DAY_OF_MONTH, 22);
+        cal.set(Calendar.DAY_OF_MONTH, 13);
         toDate = cal.getTime();
 
         car = new Car();
@@ -77,11 +78,11 @@ public class LoyaltyPointServiceTDD {
         client.addBooking(booking);
     }
 
-    private Calendar setCalendar() {
+    private Calendar setCalendar(int year, int day) {
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2018);
+        cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, Calendar.NOVEMBER);
-        cal.set(Calendar.DAY_OF_MONTH, 10);
+        cal.set(Calendar.DAY_OF_MONTH, day);
         return cal;
     }
 }
