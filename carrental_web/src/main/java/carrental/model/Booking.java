@@ -75,4 +75,13 @@ public class Booking {
 		this.toDate = toDate;
 	}
 
+	public Booking(int id, Date fromDate, Date toDate, Payment price) {
+		super();
+		this.id = id;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.price = price;
+	}
+	
+
 }
