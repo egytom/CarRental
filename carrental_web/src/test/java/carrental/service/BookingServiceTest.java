@@ -4,11 +4,13 @@ import carrental.model.*;
 import carrental.repository.BookingRepository;
 import carrental.repository.CarRepository;
 import carrental.repository.ClientRepository;
+import carrental.repository.PaymentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
@@ -27,28 +29,19 @@ public class BookingServiceTest {
     BookingService bookingService;
 
     @Mock
-    ClientRepository clientRepository;
-
-    @Mock
     CarRepository carRepository;
-
-    @Mock
-    BookingRepository bookingRepository;
 
     @Test
     public void testCreateBooking() throws Exception {
 
         Client client = new Client("Teszt Kliens", "teszt@kliens.hu");
-        clientRepository.save(client);
 
         Category bugatti = new Category("Bugatti");
         Car car = new Car(5, "Chiron", new Type(), bugatti);
-        carRepository.save(car);
 
         Booking booking = bookingService.createBooking(client, car,
                 new Date(2018,11,10),
                 new Date(2018,11,15));
-        booking = bookingRepository.save(booking);
 
         assertThat(booking.getCar(), equalTo(car));
         assertThat(booking.getClient(), equalTo(client));
