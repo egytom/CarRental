@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChangeBookingDateService {
     void changeBookingDate(Booking booking, Date newToDate){
-
+        booking.setToDate(newToDate);
     }
 }

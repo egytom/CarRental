@@ -7,6 +7,7 @@ import carrental.repository.CarRepository;
 import carrental.repository.ClientRepository;
 
 import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 
@@ -39,6 +40,9 @@ public class ChangeBookingDateServiceTDD {
     @Autowired
     BookingService bookingService;
 
+    @Autowired
+    ChangeBookingDateService changeBookingDateService;
+
     @Test
     public void testChangeBookingDate() {
         Client client = new Client("Teszt Kliens", "teszt@kliens.hu");
@@ -56,5 +60,10 @@ public class ChangeBookingDateServiceTDD {
 
         double delta = 1E-5;
         assertThat((double) booking.getPrice().getAmount(), closeTo(5000.0, delta));
+
+        changeBookingDateService.changeBookingDate(booking, new Date(2018, 11,17));
+
+        assertThat(booking.getToDate(), equalTo(new Date(2018, 11 , 17)));
+        assertThat((double)booking.getPrice().getAmount(), closeTo(7000, delta));
     }
 }
