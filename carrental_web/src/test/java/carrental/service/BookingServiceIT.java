@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.closeTo;
@@ -50,7 +51,9 @@ public class BookingServiceIT {
         Car car = new Car(5, "Chiron", new Type(), bugatti);
         carRepository.save(car);
 
-        Booking booking = bookingService.createBooking(client, car);
+        Booking booking = bookingService.createBooking(client, car,
+                new Date(2018,11,10),
+                new Date(2018,11,15));
         booking = bookingRepository.save(booking);
 
 
