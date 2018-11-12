@@ -1,6 +1,6 @@
 package carrental.service;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ import carrental.repository.PaymentRepository;
 @SpringBootTest
 @Transactional
 @AutoConfigureTestDatabase
+@ActiveProfiles("test")
 public class PaymentServiceIT {
 
     @Autowired
@@ -63,6 +65,6 @@ public class PaymentServiceIT {
         booking = bookingRepository.findById(1).get();
 
         assertThat(booking.getPrice().getAmount(), equalTo(payment.getAmount()));
-        assertTrue(!(client.getBooking().contains(booking)));
+        assertThat(client.getBooking(), hasItems(booking));
     }
 }
