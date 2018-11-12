@@ -46,8 +46,9 @@ public class LastMinuteService {
                     booking = b;
             }
 
-            if (booking.getCar().getType().getFuelType() == Type.FuelType.electric)
-                booking.getPrice().setAmount((int)(booking.getPrice().getAmount() * (1 - discountPercent / 100.0)));
+            if (booking.getCar().getType().getFuelType() == Type.FuelType.electric) {
+                booking.getPrice().setAmount((int) (booking.getPrice().getAmount() * (1 - discountPercent / 100.0)));
+            }
         }
     }
 }
