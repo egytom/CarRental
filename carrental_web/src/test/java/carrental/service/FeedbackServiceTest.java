@@ -59,7 +59,14 @@ public class FeedbackServiceTest {
 		
 		Client client = new Client("Kurdi Boti", "kurdi.boti@gmail.com");
 		Feedback feedback = new Feedback(1, "Successful rent");
+		Payment payment = new Payment();
+		Booking booking = new Booking(1);
+		
+		
+		booking.setPrice(payment);
+		client.addBooking(booking);
 		client.setFeedback(feedback);
+		feedback.setClient(client);
 		
 		when(clientrepository.findByName(client.getName())).thenReturn(Arrays.asList(client));
 		when(feedbackRepository.findByClient(client)).thenReturn(Arrays.asList(feedback));

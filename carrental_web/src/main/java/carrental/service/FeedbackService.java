@@ -37,40 +37,30 @@ public class FeedbackService {
 		
 		EmailValidator emailvalidator = new EmailValidator();
 		
-		final String from = "temalabor2018@gmail.com"; // change accordingly
-        final String password = "20Temalabor18"; // change accordingly
-        String userName = "Tema Labor";
-        String to = client.getEmailAddress(); // change accordingly
-        String host = "smtp.dreamhost.com"; // or IP address
+//		final String from = "temalabor2018@gmail.com"; // change accordingly
+//        final String password = "20Temalabor18"; // change accordingly
+        String userName = "temalabor2018@gmail.com";
+//        String host = "smtp.dreamhost.com"; // or IP address
+
+     // Recipient's email ID needs to be mentioned.
+        String to = client.getEmailAddress();
+
+        // Sender's email ID needs to be mentioned
+        String from = "web@gmail.com";
+
+        // Assuming you are sending email from localhost
+        String host = "localhost";
 
         // Get system properties
         Properties properties = System.getProperties();
 
         // Setup mail server
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", 587);
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.user", from);
-        properties.put("mail.password", password);
+        properties.setProperty("mail.smtp.host", host);
 
         // Get the default Session object.
-        @SuppressWarnings("unused")
-		Authenticator auth = new Authenticator()
-        {
-            public PasswordAuthentication getPasswordAuthentication()
-            {
-                return new PasswordAuthentication(from, password);
-            }
-        };
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(userName, password);
-            }
-        });
+        Session session = Session.getDefaultInstance(properties);
 
-        try
-        {
+        try {
            // Create a default MimeMessage object.
            MimeMessage message = new MimeMessage(session);
 
@@ -78,7 +68,7 @@ public class FeedbackService {
            message.setFrom(new InternetAddress(from));
 
            // Set To: header field of the header.
-           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+           message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
            // Set Subject: header field
            message.setSubject("Car Rental");
@@ -88,14 +78,16 @@ public class FeedbackService {
 
            // Send message
            Transport.send(message);
+           System.out.println("Sent message successfully....");
            if(emailvalidator.isValid(client.getEmailAddress(), null))
-				return false;
-			return true;
-        }
-        catch (SendFailedException mex)
-        {
+				return true;
+			return false;
+        } catch (MessagingException mex) {
            mex.printStackTrace();
         }
+        return false;
+     }
+}
 //		
 //		EmailValidator emailvalidator = new EmailValidator();
 //		
@@ -135,6 +127,3 @@ public class FeedbackService {
 //		} catch (MessagingException e) {
 //			throw new RuntimeException(e);
 //		}
-		return false;
-	}
-}

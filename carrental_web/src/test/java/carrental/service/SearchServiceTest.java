@@ -144,6 +144,8 @@ public class SearchServiceTest {
 		car = searchService.searchCarByNameAndType("Ferrari", type).get(0);
 		
 		assertThat(car.getName(), equalTo("Ferrari"));
+		assertThat(car.getType().getSeatNumber(), equalTo(2));
+		assertThat(car.getType().getGearType(), equalTo(GearType.manual));
 		assertThat(car.getType().getFuelType(), equalTo(FuelType.gasoline));
 		
 	}
