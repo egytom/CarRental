@@ -1,0 +1,7 @@
+Környezetbarát Last Minute akció 
+ - Ha az adott kliens már legalább egyszer bérelt autót és a foglalás napja 
+   megegyezik a foglalás kezdetével (LastMinute), 50%-os kedvezménnyel foglalhat.
+
+ - Client megkeresése; létezik-e már (bérelt-e már nálunk legalább egyszer)
+ - Foglalás napjának és a foglalás kezdetének összehasonlítása
+ - 50%-os kedvezmény az alapárból
