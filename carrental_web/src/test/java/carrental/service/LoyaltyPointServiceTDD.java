@@ -47,18 +47,18 @@ public class LoyaltyPointServiceTDD {
     private Booking booking;
 
     @Test
-    public void testInitialization() {
+    public void testLoyaltyPointsAdded() throws Exception{
         //ARRANGE
         initialize();
 
         //ACT
-        loyaltyPointService.addLoyaltyPoints();
+        loyaltyPointService.addLoyaltyPoints(client);
 
         //ASSERT
-        assertThat(client.getLoyaltyPoint(), equalTo(0));
-
+        assertThat(client.getLoyaltyPoint(), equalTo(5));
 
     }
+
 
     private void initialize() {
         Calendar cal = setCalendar();
