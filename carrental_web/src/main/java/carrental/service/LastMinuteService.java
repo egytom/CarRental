@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,11 +32,20 @@ public class LastMinuteService {
     @Transactional
     public void EcoLastMinuteDiscount(Client client) {
 
-        List<Client> alreadyClient = clientRepository.findByName(client.getName());
-        List<Booking> bookings;
+        Date today = Calendar.getInstance().getTime();
 
-        if (alreadyClient.isEmpty() == false)
-            bookings = bookingRepository.findByClient(client);
+        List<Client> alreadyClient = clientRepository.findByName(client.getName());
+        List<Booking> bookings = bookingRepository.findByClient(client);
+        Booking booking = new Booking();
+
+        if (alreadyClient.isEmpty() == false) {
+            for (Booking b : bookings) {
+                if (b.getFromDate().getDay() == today.getDay())
+                    booking = b;
+            }
+
+        }
+
 
     }
 }

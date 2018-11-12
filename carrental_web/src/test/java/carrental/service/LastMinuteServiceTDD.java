@@ -15,7 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -44,7 +48,7 @@ public class LastMinuteServiceTDD {
 
         //ARRANGE
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fromDate = new Date();
+        Date fromDate = Calendar.getInstance().getTime();
         Date toDate = sdf.parse("2019-01-01");
 
         Client client = new Client("Teszt Kliens", "teszt@kliens.hu");
@@ -66,5 +70,9 @@ public class LastMinuteServiceTDD {
         //ASSERT
         client = clientRepository.findByName("Teszt Kliens").get(0);
         booking = bookingRepository.findByClient(client).get(0);
+
+        assertThat(client.getName(), equalTo("Teszt Kliens"));
+        //noinspection deprecation
+        assertThat(booking.getFromDate().getDay(), equalTo(Calendar.getInstance().getTime().getDay()));
     }
 }
