@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import carrental.model.Booking;
 import carrental.model.Client;
 import carrental.model.Feedback;
+import carrental.model.Payment;
 import carrental.repository.BookingRepository;
 import carrental.repository.ClientRepository;
 import carrental.repository.FeedbackRepository;
@@ -46,7 +47,10 @@ public class FeedbackServiceIT {
 		Client client = new Client(1, "Kurdi Boti", "kurdi.boti@gmail.com", "0620426742");
 		Booking booking = new Booking(1);
 		Feedback feedback = new Feedback(1, "Successful rent");
+		Payment payment = new Payment();
 		
+		
+		booking.setPrice(payment);
 		client = clientrepository.save(client);
 		feedback = feedbackRepository.save(feedback);
 		

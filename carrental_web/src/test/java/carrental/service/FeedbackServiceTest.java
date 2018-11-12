@@ -1,11 +1,11 @@
 package carrental.service;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
-import static org.hamcrest.Matchers.equalTo;
 
-	import java.util.Arrays;
+import java.util.Arrays;
 
 import javax.mail.MessagingException;
 
@@ -18,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import carrental.model.Booking;
 import carrental.model.Client;
 import carrental.model.Feedback;
+import carrental.model.Payment;
 import carrental.repository.ClientRepository;
 import carrental.repository.FeedbackRepository;
 
@@ -39,7 +40,9 @@ public class FeedbackServiceTest {
 		Client client = new Client(1, "Kurdi Boti", "kurdi.boti@gmail.com", "0620426742");
 		Booking booking = new Booking(1);
 		Feedback feedback = new Feedback(1, "Successful rent");
+		Payment payment = new Payment();
 		
+		booking.setPrice(payment);
 		client.addBooking(booking);
 		client.setFeedback(feedback);
 		
