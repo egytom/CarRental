@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -72,6 +73,8 @@ public class LastMinuteServiceTDD {
         booking = bookingRepository.findByClient(client).get(0);
 
         assertThat(client.getName(), equalTo("Teszt Kliens"));
+        assertThat(car.getType().getFuelType(), equalTo(Type.FuelType.electric));
+        assertThat(booking.getPrice().getAmount(), equalTo(2500));
         //noinspection deprecation
         assertThat(booking.getFromDate().getDay(), equalTo(Calendar.getInstance().getTime().getDay()));
     }
