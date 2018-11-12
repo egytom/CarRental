@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import carrental.model.Booking;
 import carrental.model.Client;
@@ -30,13 +31,13 @@ public class DelayChargeService {
 	@Autowired
 	PaymentRepository paymentRepository;
 	
-	public void delayCharge() {
-		List<Client> clients = clientRepository.findAll();
+	@Transactional
+	public void delayCharge(List<Client> clients) {
 		Date today = Calendar.getInstance().getTime();
 		
 		for(Client c : clients) {
 			for(Booking b : c.getBooking()) {
-				if(today.compareTo(b.getToDate()) < 0) {
+				if(today.compareTo(b.getToDate()) > 0) {
 					long diffInMillies = Math.abs(today.getTime() - b.getToDate().getTime());
 				    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 				    
