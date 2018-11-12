@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import carrental.repository.CarRepository;
 @SpringBootTest
 @Transactional
 @AutoConfigureTestDatabase
+@ActiveProfiles("test")
 public class SearchServiceIT {
 	
 	@Autowired
@@ -124,7 +126,7 @@ public class SearchServiceIT {
 		//ARRANGE
 		Category category = new Category("Volkswagen");
 		Car car = new Car(15, "Polo", new Type(), category);
-		carRepository.save(car);
+		car = carRepository.save(car);
 
 		//ACT
 		car = searchService.searchCarByCategory(category).get(0);
