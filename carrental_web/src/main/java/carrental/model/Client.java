@@ -20,14 +20,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Client {
-	
+
 	@Id
 	@GeneratedValue
 	private int id;
 	private String name;
 	private String emailAddress;
 	private String phoneNumber;
-	
+	private int loyaltyPoint;
+
 	@OneToMany(mappedBy="client")
 	private List<Booking> booking;
 
@@ -54,7 +55,16 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void addBooking(Booking booking) {
+    public Client(int id, String name, String emailAddress, String phoneNumber, List<Booking> booking, Feedback feedback) {
+        this.id = id;
+        this.name = name;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.booking = booking;
+        this.feedback = feedback;
+    }
+
+    public void addBooking(Booking booking) {
 		booking.setClient(this);
 		booking.getPrice().setBooking(booking);
 		if (this.booking == null)
@@ -62,5 +72,8 @@ public class Client {
 		this.booking.add(booking);
 	}
 
+	public void addLoyaltyPoint(int loyaltyPoint) {
+	    this.loyaltyPoint += loyaltyPoint;
+    }
 
 }
