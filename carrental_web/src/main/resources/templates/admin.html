@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorator="layout">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" />
+
+        <title>Admin Page</title> 
+	    <script src="content-script.js"></script>
+	</head>
+
+	<body>
+
+        <section layout:fragment="content">
+			<form action="car" method="post" th:action="@{/admin/newcar}" th:object="${car}">
+                <b>Új autó felvétele:</b>
+                <br>
+                <input name="car" placeholder="Név" th:field="*{name}" required/>
+                <br>
+                <input name="car" placeholder="Bérleti díj" th:field="*{rentalPrice}" required/>
+                <br>
+				<input type="submit" value="Felvétel" />
+			</form>
+			<ul>
+				<li th:each="car : ${cars}">
+					<span th:text="${car.name}">Első autó</span>
+				</li>
+            </ul>
+            <br>
+            <form action="name" method="post" th:action="@{/admin/found}" th:object="${car}"> 
+                <b>Autók keresése név alapján:</b>
+                <br>
+                <input name="car" placeholder="Név" th:field="*{name}" required/>
+                <br>
+				<input type="submit" value="Keresés" />
+			</form>
+			<ul>
+				<li th:each="foundcar : ${foundCarsByName}">
+                    ID: 
+                    <span th:text="${foundcar.id}">Első autó</span>
+                    , Név: 
+                    <span th:text="${foundcar.name}">Első autó</span> 
+                    , Bérleti díj: 
+                    <span th:text="${foundcar.rentalPrice}">Első autó</span> 
+				</li>
+            </ul>
+            <br>
+            <form action="delete" method="post" th:action="@{/admin/deleted}" th:object="${car}"> 
+                <b>Autók törlése:</b>
+                <br>
+                <input name="car" placeholder="ID" th:field="*{id}" required/>
+                <br>
+				<input type="submit" value="Törlés" />
+			</form>
+			<br>
+            <form action="update" method="post" th:action="@{/admin/updated}" th:object="${car}"> 
+                <b>Autók frissítése ID alapján:</b>
+                <br>
+                <input name="car" placeholder="ID" th:field="*{id}" required/>
+                <br>
+                <input name="car" placeholder="Új név" th:field="*{name}" required/>
+                <br>
+                <input name="car" placeholder="Új bérleti díj" th:field="*{rentalPrice}" required/>
+                <br>
+				<input type="submit" value="Frissítés" />
+			</form>
+		</section>
+        
+	</body>
+
+</html>

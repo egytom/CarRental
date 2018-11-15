@@ -1,0 +1,8 @@
+<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+  <property name="additionalDialects">
+    <set>
+      <bean
+        class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+    </set>
+  </property>
+</bean>
