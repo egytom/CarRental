@@ -18,7 +18,7 @@ import carrental.repository.CarRepository;
 import carrental.service.SearchService;
 
 @Controller
-public class AdminCarPageController {
+public class AdminCarController {
 
 	@Autowired
 	CarRepository carRepository;

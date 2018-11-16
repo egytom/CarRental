@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/homepage")
-public class HomePageController {
+@RequestMapping("/contacts")
+public class ContactsController {
 	
 	@GetMapping
-	public String getHomepage(Map<String, Object> model) {
+	public String getContacts(Map<String, Object> model) {
 		
-		return "homepage";
+		return "contacts";
 		
 	}
 	
 	@PostMapping
-	public String createHompage(Map<String, Object> model) {
+	public String createContacts(Map<String, Object> model) {
 		
-		return "redirect:/homepage";
+		return "redirect:/contacts";
 		
 	}
 	
