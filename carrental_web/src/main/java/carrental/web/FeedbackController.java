@@ -2,7 +2,6 @@ package carrental.web;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,16 +13,20 @@ import carrental.model.Feedback;
 import carrental.repository.FeedbackRepository;
 
 @Controller
-@RequestMapping("/feedback")
 public class FeedbackController {
 	
 	@Autowired
 	FeedbackRepository feedbackRepository;
 	
-	@PostMapping
+	@PostMapping("/adminfeedback")
+	public String redirectFeedback(Map<String, Object> model) {
+		return "redirect:/adminfeedback";
+	}
+	
+	@PostMapping("/adminfeedback/create")
 	public String createFeedback(Map<String, Object> model, Feedback feedback) {
 		feedbackRepository.save(feedback);
-		return "redirect:/feedback";
+		return "redirect:/adminfeedback";
 	}
 	
 //	@PostMapping
@@ -32,12 +35,12 @@ public class FeedbackController {
 //		return "redirect:/feedback";
 //	}
 	
-	@GetMapping
+	@GetMapping("/adminfeedback")
 	public String getAllFeedback(Map<String, Object> model) {
 		List<Feedback> allFeedback = feedbackRepository.findAll();
 		model.put("feedbacks", allFeedback);
 		model.put("feedback", new Feedback());
-		return "feedback";
+		return "adminfeedback";
 	}
 	
 //	@PostMapping

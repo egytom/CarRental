@@ -70,6 +70,16 @@ form{
     vertical-align: middle;
 }
 
+.dropdown:hover{
+    background-color: orange;
+    font-style: bold;
+}
+
+.dropdown{
+    margin: 0px;
+    vertical-align: middle;
+}
+
 .li-menu > .btn{
     height: 48px;
     margin-bottom: 2px;

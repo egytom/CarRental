@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    layout:decorator="layout">
+    layout:decorator="layoutadmin">
 
 	<head>
 		<meta charset="utf-8">
@@ -15,7 +15,7 @@
 	<body>
 
         <section layout:fragment="content">
-			<form action="car" method="post" th:action="@{/admin/newcar}" th:object="${car}">
+			<form action="car" method="post" th:action="@{/admincar/newcar}" th:object="${car}">
                 <b>Új autó felvétele:</b>
                 <br>
                 <input name="car" placeholder="Név" th:field="*{name}" required/>
@@ -30,7 +30,7 @@
 				</li>
             </ul>
             <br>
-            <form action="name" method="post" th:action="@{/admin/found}" th:object="${car}"> 
+            <form action="name" method="post" th:action="@{/admincar/found}" th:object="${car}"> 
                 <b>Autók keresése név alapján:</b>
                 <br>
                 <input name="car" placeholder="Név" th:field="*{name}" required/>
@@ -48,7 +48,7 @@
 				</li>
             </ul>
             <br>
-            <form action="delete" method="post" th:action="@{/admin/deleted}" th:object="${car}"> 
+            <form action="delete" method="post" th:action="@{/admincar/deleted}" th:object="${car}"> 
                 <b>Autók törlése:</b>
                 <br>
                 <input name="car" placeholder="ID" th:field="*{id}" required/>
@@ -56,7 +56,7 @@
 				<input type="submit" value="Törlés" />
 			</form>
 			<br>
-            <form action="update" method="post" th:action="@{/admin/updated}" th:object="${car}"> 
+            <form action="update" method="post" th:action="@{/admincar/updated}" th:object="${car}"> 
                 <b>Autók frissítése ID alapján:</b>
                 <br>
                 <input name="car" placeholder="ID" th:field="*{id}" required/>

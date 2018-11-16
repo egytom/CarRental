@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorator="layoutadmin">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" />
+
+	<title>Admin Page</title>
+	<script src="content-script.js"></script>
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<form action="feedback" method="post" th:action="@{/adminfeedback/create}" th:object="${feedback}">
+			<b>Text:</b>
+			<input text="feedback" th:field="*{text}" />
+			<br />
+			<input type="submit" value="OK" />
+		</form>
+
+
+		<ul>
+			<li th:each="feed : ${feddbacks}">
+				<span th:text="${feed.text}">Sikeres bérlés</span>
+			</li>
+
+		</ul>
+	</section>
+</body>
+
+</html>
