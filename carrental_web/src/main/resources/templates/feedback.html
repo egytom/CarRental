@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Feedback</title>
+</head>
+<body>
+	<form action="feedback" method="post" th:action="@{/feedback}"
+		th:object="${feedback}">
+		Text: <input text="feedback" th:field="*{text}" /><br /> <input
+			type="submit" value="OK" />
+	</form>
+
+
+	<ul>
+		<li th:each="feed : ${feddbacks}"><span th:text="${feedback.text}">Sikeres bérlés</span></li>
+
+	</ul>
+
+</body>
+</html>
