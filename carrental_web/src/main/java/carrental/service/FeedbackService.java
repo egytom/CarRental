@@ -2,11 +2,8 @@ package carrental.service;
 
 import java.util.Properties;
 
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.SendFailedException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -18,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import carrental.model.Client;
+import carrental.model.Feedback;
 import carrental.repository.ClientRepository;
 import carrental.repository.FeedbackRepository;
 
@@ -31,9 +29,10 @@ public class FeedbackService {
 	ClientRepository clientrepository;
 
 	@Transactional
-	public boolean send(String clientName) throws MessagingException {
+	public boolean send(Feedback feedback) throws MessagingException {
 
-		Client client = clientrepository.findByName(clientName).get(0);
+		
+		Client client = clientrepository.findByName(feedback.getClient().getName()).get(0);
 
 		EmailValidator emailvalidator = new EmailValidator();
 

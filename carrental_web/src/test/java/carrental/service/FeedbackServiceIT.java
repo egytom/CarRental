@@ -88,7 +88,7 @@ public class FeedbackServiceIT {
 		feedback = feedbackRepository.save(feedback);
 		booking = bookingrepository.save(booking);
 		
-		boolean result = feedbackService.send(client.getName());
+		boolean result = feedbackService.send(feedback);
 		
 		assertTrue(result);
 	}

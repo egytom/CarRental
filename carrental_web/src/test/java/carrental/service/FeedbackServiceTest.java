@@ -71,7 +71,7 @@ public class FeedbackServiceTest {
 		when(clientrepository.findByName(client.getName())).thenReturn(Arrays.asList(client));
 		when(feedbackRepository.findByClient(client)).thenReturn(Arrays.asList(feedback));
 		
-		boolean result = feedbackService.send(client.getName());
+		boolean result = feedbackService.send(feedback);
 		
 		assertTrue(result);
 	}

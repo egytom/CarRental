@@ -1,33 +1,70 @@
 <!DOCTYPE html>
-<html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    layout:decorator="layoutadmin">
+<html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="layoutadmin">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" />
 
-	<title>Admin Page</title>
-	<script src="content-script.js"></script>
+<title>Admin Page</title>
+<script src="content-script.js"></script>
 </head>
 
 <body>
 	<section layout:fragment="content">
-		<form action="feedback" method="post" th:action="@{/adminfeedback/create}" th:object="${feedback}">
-			<b>Text:</b>
-			<input text="feedback" th:field="*{text}" />
-			<br />
-			<input type="submit" value="OK" />
+
+
+		<form action="feedback" method="post"
+			th:action="@{/adminfeedback/create}" th:object="${feedback}" >
+			<b>Új visszajelzés szövege:</b> 
+			<br> 
+			<input name="feedback" placeholder="szöveg" th:field="*{text}" required /> 
+			<br> 
+			<input name="name" placeholder="szöveg" th:value="${name}" required /> 
+			<br> 
+			<input type="submit" value="Felvétel" />
 		</form>
-
-
+		<b>Visszajelzések listája:</b>
 		<ul>
-			<li th:each="feed : ${feddbacks}">
-				<span th:text="${feed.text}">Sikeres bérlés</span>
+			<li th:each="feedback : ${feedbacks}">ID: <span
+				th:text="${feedback.id}">Feedback ID</span> , Üzenet: <span
+				th:text="${feedback.text}">Feedback üzenet</span>
 			</li>
-
 		</ul>
+
+		<br>
+		<form action="delete" method="post"
+			th:action="@{/adminfeedback/delete}" th:object="${feedback}">
+			<b>Visszajelzés törlése:</b> <br> <input name="feedback"
+				placeholder="ID" th:field="*{id}" required /> <br> <input
+				type="submit" value="Törlés" />
+		</form>
+		<br>
+		<form action="update" method="post"
+			th:action="@{/adminfeedback/update}" th:object="${feedback}">
+			<b>Visszjelzés frissítése ID alapján:</b> <br> <input
+				name="feedback" placeholder="ID" th:field="*{id}" required /> <br>
+			<input name="feedback" placeholder="Új üzenet" th:field="*{text}"
+				required /> <br> <input type="submit" value="Frissítés" />
+		</form>
+		<br>
+		<form action="name" method="post" th:action="@{/adminfeedback/find}"
+			th:object="${feedback}">
+			<b>Visszajelzés küldése ID alapján:</b> <br> <input
+				name="feedback" placeholder="ID" th:field="*{id}" required /> <br>
+			<input type="submit" value="Küldés" />
+		</form>
+		<ul>
+			<li th:each="foundedFeedback : ${foundFeedbackByID}">ID: <span
+				th:text="${foundedFeedback.id}">Feedback ID</span> , Üzenet: <span
+				th:text="${foundedFeedback.text}">Feedback szöveg</span>
+			</li>
+		</ul>
+		<span th:text="${result}"></span>
+
 	</section>
 </body>
 
