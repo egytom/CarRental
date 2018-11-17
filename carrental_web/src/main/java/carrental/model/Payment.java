@@ -21,6 +21,7 @@ public class Payment {
 	@GeneratedValue
     private int id;
     private int amount;
+    private String client_name;
 
     @OneToOne(mappedBy = "price")
     private Booking booking;
