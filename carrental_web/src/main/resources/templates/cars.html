@@ -2,19 +2,60 @@
 <html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     layout:decorator="layout">
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" />
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" />
 
-        <title>Cars Page</title> 
-	    <script src="content-script.js"></script>
-	</head>
+	<title>Cars Page</title>
+	<script src="content-script.js"></script>
+</head>
 
-	<body>
-
-        
-	</body>
+<body>
+	<section layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group" id="adv-search">
+						<input type="text" class="form-control" placeholder="Search for cars..." />
+						<div class="input-group-btn">
+							<div class="btn-group" role="group">
+								<div class="dropdown dropdown-lg">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+										<span class="caret"></span>
+									</button>
+									<div class="dropdown-menu dropdown-menu-right" role="menu">
+										<form class="form-horizontal" role="form">
+											<div class="form-group">
+												<label for="filter">Fuel type</label>
+												<select class="form-control">
+													<option value="0" selected>All type</option>
+													<option value="1">Diesel</option>
+													<option value="2">Electric</option>
+													<option value="3">Gasoline</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="contain">Brand name</label>
+												<input class="form-control" type="text" />
+											</div>
+											<button type="submit" class="btn btn-primary">
+												<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+											</button>
+										</form>
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
 
 </html>
