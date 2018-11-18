@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Doppio+One');
-
-.title{
+.title {
     background-color: lightgray;
     padding: 10px;
     height: 80px;
     width: 100%;
 }
 
-.title h1{
+.title h1 {
     font-family: Doppio+One;
     color: black;
     font-size: 4em;
@@ -19,20 +18,20 @@
     vertical-align: middle;
 }
 
-.footer{
+.footer {
     background-color: lightgray;
     height: 30px;
     border-top: solid 2px black;
     width: 100%;
     position: fixed;
     z-index: 1;
-    bottom:0;
+    bottom: 0;
     line-height: 30px;
     text-align: center;
     vertical-align: middle;
 }
 
-body::after{
+body::after {
     content: ' ';
     position: absolute;
     left: 0px;
@@ -45,42 +44,42 @@ body::after{
     background-size: cover;
 }
 
-.content{
-    margin: 25px; 
+.content {
+    margin: 25px;
     font-size: 1.25em;
     overflow: auto;
     height: calc(100vh - 212px);
 }
 
-li{
+li {
     margin-bottom: 5px;
 }
 
-form{
+form {
     margin-bottom: 15px;
 }
 
-.li-menu:hover{
+.li-menu:hover {
     background-color: orange;
     font-style: bold;
 }
 
-.li-menu{
+.li-menu {
     margin: 0px;
     vertical-align: middle;
 }
 
-.dropdown:hover{
+.dropdown:hover {
     background-color: orange;
     font-style: bold;
 }
 
-.dropdown{
+.dropdown {
     margin: 0px;
     vertical-align: middle;
 }
 
-.li-menu > .btn{
+.li-menu>.btn {
     height: 48px;
     margin-bottom: 2px;
     background-color: white;
@@ -91,7 +90,7 @@ form{
     vertical-align: middle;
 }
 
-.li-menu > .btn:hover{
+.li-menu>.btn:hover {
     background-color: orange;
     font-style: bold;
     color: black;
@@ -101,7 +100,7 @@ form{
     float: left;
 }
 
-.close{
+.close {
     display: inline-block;
 }
 
@@ -109,25 +108,31 @@ form{
     margin-top: -1px;
     padding: 6px 20px;
 }
+
 .input-group-btn .btn-group {
     display: flex !important;
 }
+
 .btn-group .btn {
     border-radius: 0;
     margin-left: -1px;
 }
+
 .btn-group .btn:last-child {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
 }
+
 .btn-group .form-horizontal .btn[type="submit"] {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
+
 .form-horizontal .form-group {
     margin-left: 0;
     margin-right: 0;
 }
+
 .form-group .form-control:last-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -144,4 +149,36 @@ form{
     .dropdown.dropdown-lg .dropdown-menu {
         min-width: 500px;
     }
+}
+
+.searched-cars {
+    list-style-type: none;
+}
+
+.searched-cars-table {
+    margin-top: 75px;
+}
+
+.label-sized {
+    display: inline-block;
+    width: 120px;
+}
+
+.label-sized2 {
+    display: inline-block;
+    width: 140px;
+}
+
+.span-sized {
+    display: inline-block;
+    width: 60px;
+}
+
+.autok-keresese-label {
+    background: lightgray;
+    display: inline-block;
+    width: 450px;
+    height: 34px;
+    line-height: 34px;
+    vertical-align: middle;
 }

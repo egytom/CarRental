@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="input-group" id="adv-search">
-						<input type="text" class="form-control" placeholder="Search for cars..." />
+						<label class="autok-keresese-label">Autók keresése...</label>
 						<div class="input-group-btn">
 							<div class="btn-group" role="group">
 								<div class="dropdown dropdown-lg">
@@ -26,19 +26,21 @@
 										<span class="caret"></span>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right" role="menu">
-										<form class="form-horizontal" role="form">
+										<form class="form-horizontal" role="form" th:action="@{/carssearched}" method="POST">
 											<div class="form-group">
-												<label for="filter">Fuel type</label>
-												<select class="form-control">
-													<option value="0" selected>All type</option>
-													<option value="1">Diesel</option>
-													<option value="2">Electric</option>
-													<option value="3">Gasoline</option>
+												<label for="contain">Név</label>
+												<input class="form-control" type="text" th:object="${car}" th:field="*{name}" required/>
+											</div>
+											<div class="form-group">
+												<label>Ülések száma</label>
+												<select class="form-control" th:object="${type}" th:field="*{seatNumber}">
+													<option th:each="i : ${#numbers.sequence(2, 7)}" th:value="${i}" th:text="${i}">
+													</option>
 												</select>
 											</div>
 											<div class="form-group">
-												<label for="contain">Brand name</label>
-												<input class="form-control" type="text" />
+												<label for="contain">Gyártó</label>
+												<input class="form-control" type="text" th:object="${category}" th:field="*{brand}" />
 											</div>
 											<button type="submit" class="btn btn-primary">
 												<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -46,15 +48,26 @@
 										</form>
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary">
-									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<ul class="searched-cars-table">
+			<li class="searched-cars" th:each="car : ${searchedCars}">
+				<label class="label-sized2"> ID</label>
+				<span th:text="${car.id}" class="span-sized">Első autó</span>
+				<label class="label-sized2">| Név</label>
+				<span th:text="${car.name}" class="span-sized">Első autó</span>
+				<label class="label-sized2">| Bérleti díj</label>
+				<span th:text="${car.rentalPrice}" class="span-sized">Első autó</span>
+				<label class="label-sized2">| Ülések száma</label>
+				<span th:text="${seatNumber}" class="span-sized">Első autó</span>
+				<label class="label-sized2">| Gyártó</label>
+				<span th:text="${brand}" class="span-sized">Első autó</span>
+			</li>
+		</ul>
 	</section>
 </body>
 

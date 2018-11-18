@@ -58,11 +58,11 @@
 			<br>
             <form action="update" method="post" th:action="@{/admincar/updated}" th:object="${car}"> 
                 <b>Autók frissítése ID alapján:</b>
-                <br>
+                <br><label class="label-sized">ID:</label>
                 <input name="car" placeholder="ID" th:field="*{id}" required/>
-                <br>
+                <br><label class="label-sized">Új név:</label>
                 <input name="car" placeholder="Új név" th:field="*{name}" required/>
-                <br>
+                <br><label class="label-sized">Új bérleti díj:</label>
                 <input name="car" placeholder="Új bérleti díj" th:field="*{rentalPrice}" required/>
                 <br>
 				<input type="submit" value="Frissítés" />

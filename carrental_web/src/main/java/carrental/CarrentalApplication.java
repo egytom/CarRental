@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import carrental.model.Car;
 import carrental.model.Type;
+import carrental.model.Type.FuelType;
+import carrental.model.Type.GearType;
 import carrental.repository.CarRepository;
 
 @SpringBootApplication
@@ -22,7 +24,8 @@ public class CarrentalApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		carRepository.save(new Car(1, "Ferrari", new Type(), new Category()));
+		for (int i=1; i<10; i++)
+			carRepository.save(new Car(i, "Ferrari", new Type(2, GearType.manual, FuelType.gasoline), new Category()));
 	}
 
 }
