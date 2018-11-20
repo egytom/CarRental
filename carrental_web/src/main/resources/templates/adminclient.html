@@ -15,6 +15,96 @@
 	<body>
 
         <section layout:fragment="content">
+			<form action="client" method="post" th:action="@{/adminclient/newclient}" th:object="${client}">
+                <b>Új kliens felvétele: </b>
+                <br>
+                <input name="client" placeholder="Kliens" th:field="*{name}" required>
+                <br>
+                <input name="client" placeholder="Telefonszám" th:field="*{phoneNumber}" required>
+                <br>
+                <input name="client" placeholder="E-mail cím" th:field="*{emailAddress}" required>
+                <br>
+                <input type="submit" value="Felvétel">
+            </form>
+            <ul>
+                <li th:each="client : ${clients}">
+                    <span th:text="${client.id}">Első kliens ID-ja</span>
+                    <span th:text="${client.name}">Első kliens neve</span>
+                    <span th:text="${client.phoneNumber}">Első kliens email címe</span>
+                    <span th:text="${client.emailAddress}">Első kliens email címe</span>
+                    <br>
+                </li>
+            </ul>
+
+            <br>
+
+            <form action="name" method="post" th:action="@{/adminclient/findclientname}" th:object="${client}">
+                <b>Kliens keresése név alapján:</b>
+                <br>
+                <input name="client" placeholder="Név" th:field="*{name}" required/>
+                <br>
+                <input type="submit" value="Keresés" />
+            </form>
+            <ul>
+                <li th:each="foundClient : ${findClientsByName}">
+                    ID:
+                    <span th:text="${foundClient.id}">Kliens</span>
+                    , Név:
+                    <span th:text="${foundClient.name}">Kliens</span>
+                    , Telefonszám:
+                    <span th:text="${foundClient.phoneNumber}">Kliens</span>
+                    , Email cím:
+                    <span th:text="${foundClient.emailAddress}">Kliens</span>
+                </li>
+            </ul>
+
+            <br>
+
+            <form action="name" method="post" th:action="@{/adminclient/findclientid}" th:object="${client}">
+                <b>Kliens keresése ID alapján:</b>
+                <br>
+                <input name="client" placeholder="ID" th:field="*{id}" required/>
+                <br>
+                <input type="submit" value="Keresés" />
+            </form>
+            <ul>
+                <li th:each="foundClient : ${findClientByID}">
+                    ID:
+                    <span th:text="${foundClient.id}">Kliens</span>
+                    , Név:
+                    <span th:text="${foundClient.name}">Kliens</span>
+                    , Telefonszám:
+                    <span th:text="${foundClient.phoneNumber}">Kliens</span>
+                    , Email cím:
+                    <span th:text="${foundClient.emailAddress}">Kliens</span>
+                </li>
+            </ul>
+
+            <br>
+
+            <form action="delete" method="post" th:action="@{/adminclient/delete}" th:object="${client}">
+                <b>Kliens törlése:</b>
+                <br>
+                <input name="client" placeholder="ID" th:field="*{id}" required/>
+                <br>
+                <input type="submit" value="Törlés" />
+            </form>
+
+            <br>
+
+            <form action="update" method="post" th:action="@{/adminclient/update}" th:object="${client}">
+                <b>Kliens frissítése ID alapján:</b>
+                <br>
+                <input name="client" placeholder="Kliens ID-ja" th:field="*{id}" required/>
+                <br>
+                <input name="client" placeholder="Új név" th:field="*{name}" required/>
+                <br>
+                <input name="client" placeholder="Új telefonszám" th:field="*{phoneNumber}" required/>
+                <br>
+                <input name="client" placeholder="Új email cím:" th:field="*{emailAddress}" required/>
+                <br>
+                <input type="submit" value="Frissítés" />
+            </form>
 
 		</section>
         
