@@ -151,11 +151,16 @@ form {
     }
 }
 
-.searched-cars {
+.searched-item {
     list-style-type: none;
+    border-bottom: solid 1px black;
 }
 
-.searched-cars-table {
+.searched-item-table {
+    padding-right: 40px;
+}
+
+.searched-item-table#car {
     margin-top: 75px;
 }
 
@@ -181,4 +186,35 @@ form {
     height: 34px;
     line-height: 34px;
     vertical-align: middle;
+}
+
+h1.news {
+    color: #111;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    margin: 0 0 25px;
+}
+
+h2.news {
+    color: #111;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 32px;
+    margin: 0 0 10px;
+}
+
+p.news {
+    color: #685206;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1em;
+    font-weight: 450;
+    line-height: 20px;
+    margin: 0 0 20px;
+    text-align: justify;
+    text-justify: inter-word;
 }

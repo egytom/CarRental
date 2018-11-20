@@ -13,8 +13,15 @@
 	</head>
 
 	<body>
-
-		
+		<section layout:fragment="content">
+			<h1 class="news">Hírek</h2>
+			<ul class="searched-item-table">
+				<li th:each="article : ${news}" class="searched-item">
+					<h2 th:text="${article.author}" class="news">Első autó</h2>
+					<p th:text="${article.article}" class="news">Első autó</p>
+				</li>
+            </ul>
+		</section>
 	</body>
 
 </html>

@@ -54,8 +54,8 @@
 				</div>
 			</div>
 		</div>
-		<ul class="searched-cars-table">
-			<li class="searched-cars" th:each="car : ${searchedCars}">
+		<ul class="searched-item-table" id="car">
+			<li class="searched-item" th:each="car : ${searchedCars}">
 				<label class="label-sized2"> ID</label>
 				<span th:text="${car.id}" class="span-sized">Első autó</span>
 				<label class="label-sized2">| Név</label>
