@@ -99,6 +99,6 @@ public class AdminClientController {
         }
         return getAllClients(model);
     }
-    
+
 
 }

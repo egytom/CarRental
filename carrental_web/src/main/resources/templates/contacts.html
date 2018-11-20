@@ -8,13 +8,45 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" />
 
+		<link rel="stylesheet" href="../static/css/contacts.css" th:href="@{/css/contacts.css}" />
+
         <title>Contacts Page</title> 
 	    <script src="content-script.js"></script>
 	</head>
 
 	<body>
-
-        
+	<section layout:fragment="content">
+	<div class="container">
+		<div style="text-align:center">
+			<h2>Vedd fel velünk a kapcsolatot!</h2>
+			<p>Ha bármi meglátásod van, ne habozz írni nekünk</p>
+		</div>
+		<div class="row">
+			<div class="column">
+				<img src="/css/contacts.jpg" style="width:100%">
+			</div>
+			<div class="column">
+				<form action="homepage" method="get">
+					<label for="name">Név</label>
+					<input type="text" id="name" name="name" placeholder="A neved">
+					<label for="email">E-mail</label>
+					<input type="email" id="email" name="email" placeholder="Az e-mail címed">
+					<label for="country">Ország</label>
+					<select id="country" name="country">
+						<option value="hungary">Magyarország</option>
+						<option value="austria">Ausztria</option>
+						<option value="usa">USA</option>
+						<option value="germany">Németország</option>
+						<option value="uk">Egyesült Királyság</option>
+					</select>
+					<label for="subject">Tárgy</label>
+					<textarea id="subject" name="subject" placeholder="Írj valamit.." style="height:170px"></textarea>
+					<input type="submit" value="Küldés">
+				</form>
+			</div>
+		</div>
+	</div>
+	</section>
 	</body>
 
 </html>
