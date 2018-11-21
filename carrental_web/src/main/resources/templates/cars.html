@@ -66,6 +66,9 @@
 				<span th:text="${seatNumber}" class="span-sized">Első autó</span>
 				<label class="label-sized2">| Gyártó</label>
 				<span th:text="${brand}" class="span-sized">Első autó</span>
+				<form action="booking" method="post" th:action="@{/booking}" >
+					<input type="submit" value="Foglalás" style="float : right">
+				</form>
 			</li>
 		</ul>
 	</section>

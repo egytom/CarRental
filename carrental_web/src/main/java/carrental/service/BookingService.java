@@ -22,7 +22,7 @@ public class BookingService {
 	PaymentRepository paymentRepository;
 	
 	@Transactional
-    Booking createBooking(Client client, Car car, Date fromDate, Date toDate){
+    public Booking createBooking(Client client, Car car, Date fromDate, Date toDate){
 		Booking booking = new Booking();
 		booking.setFromDate(fromDate);
 		booking.setToDate(toDate);

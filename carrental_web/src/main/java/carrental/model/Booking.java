@@ -77,4 +77,10 @@ public class Booking {
 		this.price = price;
 	}
 
+	public Booking(int id, Car car) {
+		super();
+		this.id = id;
+		this.car = car;
+	}
+
 }

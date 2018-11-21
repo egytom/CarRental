@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" />
+
+    <title>Booking Page</title>
+    <script src="content-script.js"></script>
+</head>
+
+<body>
+
+<section layout:fragment="content">
+    <form action="booking" method="post" th:action="@{/booking/book}" th:object="${booking}">
+        <b>Új foglalás felvétele:</b>
+        <br>
+        <br> Autó ID-kódja:
+        <input name ="booking" style="width: 184px" placeholder="Autó ID" th:field="*{id}" required/>
+        <br> Kezdő dátum:
+        <input type="date" min="2018-11-01" name="booking" placeholder="Kezdő dátum" th:field="*{fromDate}" required/>
+        <br> Végső dátum:
+        <input type="date" min="2018-11-01" name="booking" placeholder="Végső dátum" th:field="*{toDate}" required/>
+        <br>
+        <br>
+        <input type="submit" value="Foglalás" />
+    </form>
+    <b>Foglalások listája:</b>
+    <ul>
+        <li th:each="booking : ${bookings}"> Foglalás ID:
+            <span th:text="${booking.id}">Foglalás</span>
+            , Foglalás kezdete:
+            <span th:text="${booking.fromDate}">Foglalás</span>
+            , Foglalás vége:
+            <span th:text="${booking.toDate}">Foglalás</span>
+        </li>
+    </ul>
+</section>
+</body>
+
+</html>
