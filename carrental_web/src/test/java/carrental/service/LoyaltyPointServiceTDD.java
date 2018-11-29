@@ -1,11 +1,12 @@
 package carrental.service;
 
-import carrental.model.Booking;
-import carrental.model.Car;
-import carrental.model.Client;
-import carrental.model.Payment;
-import carrental.repository.CarRepository;
-import carrental.repository.ClientRepository;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import static org.hamcrest.Matchers.closeTo;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.junit.Assert.assertThat;
+import carrental.model.Booking;
+import carrental.model.Car;
+import carrental.model.Client;
+import carrental.model.Payment;
+import carrental.repository.CarRepository;
+import carrental.repository.ClientRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

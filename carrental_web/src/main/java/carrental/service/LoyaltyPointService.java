@@ -1,18 +1,16 @@
 package carrental.service;
 
-import carrental.model.Car;
-import carrental.model.Category;
-import carrental.model.Client;
-import carrental.model.Payment;
-import carrental.repository.CarRepository;
-import carrental.repository.ClientRepository;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.Transient;
-import java.util.Calendar;
-import java.util.Date;
+import carrental.model.Client;
+import carrental.model.Payment;
+import carrental.repository.CarRepository;
+import carrental.repository.ClientRepository;
 
 @Service
 public class LoyaltyPointService {

@@ -28,11 +28,11 @@
 			<div class="column">
 				<form action="homepage" method="get">
 					<label for="name">Név</label>
-					<input type="text" id="name" name="name" placeholder="A neved">
+					<input type="text" id="name" name="name" placeholder="A neved" required>
 					<label for="email">E-mail</label>
-					<input type="email" id="email" name="email" placeholder="Az e-mail címed">
+					<input type="email" id="email" name="email" placeholder="Az e-mail címed" required>
 					<label for="country">Ország</label>
-					<select id="country" name="country">
+					<select id="country" name="country" required>
 						<option value="hungary">Magyarország</option>
 						<option value="austria">Ausztria</option>
 						<option value="usa">USA</option>
@@ -40,7 +40,7 @@
 						<option value="uk">Egyesült Királyság</option>
 					</select>
 					<label for="subject">Tárgy</label>
-					<textarea id="subject" name="subject" placeholder="Írj valamit.." style="height:170px"></textarea>
+					<textarea id="subject" name="subject" placeholder="Írj valamit.." style="height:170px" required></textarea>
 					<input type="submit" value="Küldés">
 				</form>
 			</div>

@@ -2,20 +2,21 @@ package carrental.web;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-import carrental.model.Booking;
-import carrental.model.Car;
-import carrental.model.Client;
-import carrental.repository.BookingRepository;
-import carrental.repository.CarRepository;
-import carrental.repository.ClientRepository;
-import carrental.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import carrental.model.Booking;
+import carrental.model.Car;
+import carrental.model.Client;
+import carrental.model.Payment;
+import carrental.repository.BookingRepository;
+import carrental.repository.CarRepository;
+import carrental.repository.ClientRepository;
+import carrental.repository.PaymentRepository;
+import carrental.service.BookingService;
 
 @Controller
 public class BookingController {
@@ -28,43 +29,64 @@ public class BookingController {
 
     @Autowired
     CarRepository carRepository;
+    
+    @Autowired
+    PaymentRepository paymentRepository;
 
     @Autowired
     BookingService bookingService;
 
     @GetMapping("/booking")
     public String getAllBookings(Map<String, Object> model) {
-
         List<Booking> allBookings = bookingRepository.findAll();
         model.put("bookings", allBookings);
-        model.put("booking", new Booking());
+        model.put("car", new Car());
+        model.put("book", new Booking());
+        model.put("client", new Client());
+        
         return "booking";
-
     }
 
     @PostMapping("/booking")
-    public String createBooking(Map<String, Object> model) {
-
+    public String createBooking(Map<String, Object> model) {  	
         return "redirect:/booking";
-
     }
 
     @PostMapping("/booking/book")
-    public String bookCarById(Map<String, Object> model, Booking booking) {
+    public String bookCarById(Map<String, Object> model, Car car, Booking booking, Client client) {
         try {
-            // Client client = clientRepository.findByName(booking.getClient().getName());
-            // Car car = carRepository.findById(booking.getCar().getId()).get();
+        	client = createClientIfNotExsists(client);
+            car = carRepository.findById(car.getId()).get();
 
-            Client client = new Client(1, "Teszt Kliens"); // teszteléshez
-            Car car = carRepository.findById(1).get();
-
-            bookingService.createBooking(client, car, booking.getFromDate(), booking.getToDate());
-            model.put("result", "Foglalás kész!");
+            saveNewBooking(car, booking, client);
         } catch (Exception e) {
-            model.put("result", "Foglalás sikertelen!");
             System.out.println(e.getMessage() + "\n" + e.getStackTrace());
         }
+        
         return getAllBookings(model);
     }
+
+	private void saveNewBooking(Car car, Booking booking, Client client) {
+		booking = bookingService.createBooking(client, car, booking.getFromDate(), booking.getToDate());
+		Payment price = booking.getPrice();
+		price.setBooking(booking);
+		bookingRepository.save(booking);
+		paymentRepository.save(price);
+	}
+
+	private Client createClientIfNotExsists(Client client) throws Exception {
+		String name = client.getName();
+		List<Client> clients = clientRepository.findByName(name);
+		
+		if (!clients.isEmpty()) {
+			client = clients.get(0);
+		} else {
+			Client newClient = new Client();
+			newClient.setName(name);
+			client = newClient;
+		}
+		
+		return clientRepository.save(client);
+	}
 
 }

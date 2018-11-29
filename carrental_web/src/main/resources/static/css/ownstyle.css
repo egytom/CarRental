@@ -154,6 +154,17 @@ form {
 .searched-item {
     list-style-type: none;
     border-bottom: solid 1px black;
+    width: 1150px;
+}
+
+#news.searched-item {
+    list-style-type: none;
+    border-bottom: solid 1px black;
+    width: auto;
+}
+
+.searched-item > label{
+    height: 34px;
 }
 
 .searched-item-table {
@@ -164,6 +175,13 @@ form {
     margin-top: 75px;
 }
 
+.booking-form{
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: middle;
+}
+
 .label-sized {
     display: inline-block;
     width: 120px;
@@ -172,6 +190,11 @@ form {
 .label-sized2 {
     display: inline-block;
     width: 140px;
+}
+
+.label-sized3 {
+    display: inline-block;
+    width: 170px;
 }
 
 .span-sized {
@@ -203,7 +226,7 @@ h2.news {
     color: #111;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2em;
-    font-weight: 300;
+    font-weight: 600;
     line-height: 32px;
     margin: 0 0 10px;
 }
@@ -217,4 +240,12 @@ p.news {
     margin: 0 0 20px;
     text-align: justify;
     text-justify: inter-word;
+}
+
+input#theDate {
+    width: 200px;
+}
+
+input#booking-id{
+    width: 200px;
 }

@@ -1,12 +1,22 @@
 package carrental.model;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -18,7 +28,11 @@ public class Booking {
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date fromDate;
+	
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date toDate;
 
 	@ManyToOne
@@ -36,7 +50,7 @@ public class Booking {
 	@OneToOne
 	private Feedback feedback;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Payment price;
 
 	public Booking(int id, Car car, Payment price) {

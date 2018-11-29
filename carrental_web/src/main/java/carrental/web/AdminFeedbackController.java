@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import carrental.model.Car;
 import carrental.model.Client;
 import carrental.model.Feedback;
 import carrental.repository.ClientRepository;

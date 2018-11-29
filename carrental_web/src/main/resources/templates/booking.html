@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      layout:decorator="layout">
+    layout:decorator="layout">
 
 <head>
     <meta charset="utf-8">
@@ -10,35 +10,49 @@
 
     <title>Booking Page</title>
     <script src="content-script.js"></script>
+    <script src="../js/date.js" th:href="@{/js/date.js}"></script>
 </head>
 
 <body>
 
-<section layout:fragment="content">
-    <form action="booking" method="post" th:action="@{/booking/book}" th:object="${booking}">
-        <b>Új foglalás felvétele:</b>
-        <br>
-        <br> Autó ID-kódja:
-        <input name ="booking" style="width: 184px" placeholder="Autó ID" th:field="*{id}" required/>
-        <br> Kezdő dátum:
-        <input type="date" min="2018-11-01" name="booking" placeholder="Kezdő dátum" th:field="*{fromDate}" required/>
-        <br> Végső dátum:
-        <input type="date" min="2018-11-01" name="booking" placeholder="Végső dátum" th:field="*{toDate}" required/>
-        <br>
-        <br>
-        <input type="submit" value="Foglalás" />
-    </form>
-    <b>Foglalások listája:</b>
-    <ul>
-        <li th:each="booking : ${bookings}"> Foglalás ID:
-            <span th:text="${booking.id}">Foglalás</span>
-            , Foglalás kezdete:
-            <span th:text="${booking.fromDate}">Foglalás</span>
-            , Foglalás vége:
-            <span th:text="${booking.toDate}">Foglalás</span>
-        </li>
-    </ul>
-</section>
+    <section layout:fragment="content">
+        <form action="booking" method="post" th:action="@{/booking/book}">
+            <b>Új foglalás felvétele:</b>
+            <br/>
+            <br/>
+            <label class="label-sized2">Autó ID-kódja:</label>
+            <input id="booking-id" name="car" placeholder="Autó ID" th:object="${car}" th:field="*{id}" required/>
+            <br/>
+            <label class="label-sized2">Kezdő dátum:</label>
+            <input type="date" min="2018-11-28" id="theDate" name="book" placeholder="Kezdő dátum" th:object="${book}" th:field="*{fromDate}"
+                required/>
+            <br/>
+            <label class="label-sized2">Végső dátum:</label>
+            <input type="date" min="2018-11-28" id="theDate" name="book" placeholder="Végső dátum" th:object="${book}" th:field="*{toDate}"
+                required/>
+            <br/>
+            <label class="label-sized2">Név:</label>
+            <input id="booking-id" name="client" placeholder="Név" th:object="${client}" th:field="*{name}" required/>
+            <br/>
+            <label class="label-sized2">E-mail:</label>
+            <input id="booking-id" type="email" name="client" placeholder="e-mail" th:object="${client}" th:field="*{emailAddress}" required/>
+            <br/>
+            <br/>
+            <input type="submit" value="Foglalás" class="btn btn-primary" />
+        </form>
+        <b>Foglalások listája:</b>
+        <ul class="searched-item-table">
+            <li class="searched-item" th:each="booking : ${bookings}"> 
+                <label class="label-sized"> Foglalás ID:</label>
+				<span th:text="${booking.id}" class="span-sized">Foglalás</span>
+				<label class="label-sized3">| Foglalás kezdete:</label>
+				<span th:text="${booking.fromDate}">Foglalás</span>
+				<label class="label-sized2">| Foglalás vége:</label>
+				<span th:text="${booking.toDate}">Foglalás</span>
+            </li>
+        </ul>
+    </section>
+
 </body>
 
 </html>
