@@ -12,12 +12,81 @@
 	    <script src="content-script.js"></script>
 	</head>
 
-	<body>
+    <body>
 
-        <section layout:fragment="content">
+    <section layout:fragment="content">
+        <form action="booking" method="post" th:action="@{/adminbooking/book}">
+            <b>Új foglalás felvétele:</b>
+            <br/>
+            <br/>
+            <label class="label-sized2">Autó ID:</label>
+            <input id="booking-id" name="car" placeholder="Autó ID" th:object="${car}" th:field="*{id}" required/>
+            <br/>
+            <label class="label-sized2">Kezdő dátum:</label>
+            <input type="date" min="2018-11-28" id="theDate" name="book" placeholder="Kezdő dátum" th:object="${book}" th:field="*{fromDate}"
+                   required/>
+            <br/>
+            <label class="label-sized2">Végső dátum:</label>
+            <input type="date" min="2018-11-28" id="theDate" name="book" placeholder="Végső dátum" th:object="${book}" th:field="*{toDate}"
+                   required/>
+            <br/>
+            <label class="label-sized2">Név:</label>
+            <input id="booking-id" name="client" placeholder="Név" th:object="${client}" th:field="*{name}" required/>
+            <br/>
+            <label class="label-sized2">E-mail:</label>
+            <input id="booking-id" type="email" name="client" placeholder="e-mail" th:object="${client}" th:field="*{emailAddress}" required/>
+            <br/>
+            <input type="submit" value="Foglalás" class="btn btn-primary" />
+        </form>
+        <b>Foglalások</b>
 
-		</section>
-        
-	</body>
+        <li th:each="book : ${bookings}">
+            <span th:text="${book.id}">Fogl. id</span>
+            <span th:text="${book.car.id}">Autó id</span>
+            <span th:text="${book.fromDate}">Dátum tól</span>
+            <span th:text="${book.toDate}">Dátum ig</span>
+        </li>
+        <br>
+        <form action="booking" method="post" th:action="@{/adminbooking/find}" th:object="${book}">
+            <b>Foglalás keresése id alapján:</b>
+            <br>
+            <input name="book" placeholder="Név" th:field="*{id}" required/>
+            <br>
+            <input type="submit" value="Keresés" />
+        </form>
+        <ul>
 
+            <li th:each="b : ${foundbooking}">
+                <span th:text="${b.id}">Első autó</span>
+                <span th:text="${b.car.id}">Első autó</span>
+                <span th:text="${b.fromDate}">Első autó</span>
+                <span th:text="${b.toDate}">Első autó</span></li>
+        </ul>
+
+        <form action="booking" method="post" th:action="@{/adminbooking/update}" th:object="${book}">
+            <b>Foglalás frissítése ID alapján:</b>
+            <br/>
+
+            <label class="label-sized2">Foglalás ID:</label>
+            <input id="booking-id" name="book" placeholder="Fogl ID" th:object="${book}" th:field="*{id}" required/>
+            <br/>
+            <label class="label-sized2">Kezdő dátum:</label>
+            <input type="date" min="2018-11-28" id="theDate" name="book" placeholder="Kezdő dátum" th:object="${book}" th:field="*{fromDate}"
+                   required/>
+            <br/>
+            <label class="label-sized2">Végső dátum:</label>
+            <input type="date" min="2018-11-28" id="theDate" name="book" placeholder="Végső dátum" th:object="${book}" th:field="*{toDate}"
+                   required/>
+            <br/>
+            <label class="label-sized2">Név:</label>
+            <input id="booking-id" name="client" placeholder="Név" th:object="${client}" th:field="*{name}" required/>
+            <br/>
+            <label class="label-sized2">E-mail:</label>
+            <input id="booking-id" type="email" name="client" placeholder="e-mail" th:object="${client}" th:field="*{emailAddress}" required/>
+            <br/>
+            <input type="submit" value="Foglalás" class="btn btn-primary" />
+        </form>
+    </section>
+
+    </body>
 </html>

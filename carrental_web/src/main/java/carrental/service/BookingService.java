@@ -3,6 +3,7 @@ package carrental.service;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import carrental.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,9 @@ public class BookingService {
 
 	@Autowired
 	PaymentRepository paymentRepository;
+
+	@Autowired
+    BookingRepository bookingRepository;
 	
 	@Transactional
     public Booking createBooking(Client client, Car car, Date fromDate, Date toDate){
